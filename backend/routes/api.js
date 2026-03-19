@@ -172,9 +172,25 @@ router.post('/documents', (req, res) => {
 router.put('/documents/:id', (req, res) => {
   try {
     const { id } = req.params;
-    const { subject, items, subtotal, tax, taxAmt, total, paidAmount, projectId, currency, date, due, status, notes, client } = req.body;
+    const existing = db.prepare('SELECT * FROM documents WHERE id = ?').get(id);
+    if (!existing) return res.status(404).json({ error: 'Document not found' });
+    const body = req.body || {};
+    const client = body.client !== undefined ? body.client : existing.client_id;
+    const subject = body.subject !== undefined ? body.subject : existing.subject;
+    const items = body.items !== undefined ? JSON.stringify(body.items) : existing.items;
+    const subtotal = body.subtotal !== undefined ? body.subtotal : existing.subtotal;
+    const tax = body.tax !== undefined ? body.tax : existing.tax;
+    const taxAmt = body.taxAmt !== undefined ? body.taxAmt : existing.tax_amt;
+    const total = body.total !== undefined ? body.total : existing.total;
+    const paidAmount = body.paidAmount !== undefined ? body.paidAmount : existing.paid_amount;
+    const projectId = body.projectId !== undefined ? body.projectId : existing.project_id;
+    const currency = body.currency !== undefined ? body.currency : existing.currency;
+    const date = body.date !== undefined ? body.date : existing.date;
+    const due = body.due !== undefined ? body.due : existing.due_date;
+    const status = body.status !== undefined ? body.status : existing.status;
+    const notes = body.notes !== undefined ? body.notes : existing.notes;
     const result = db.prepare(`UPDATE documents SET client_id=?,subject=?,items=?,subtotal=?,tax=?,tax_amt=?,total=?,paid_amount=?,project_id=?,currency=?,date=?,due_date=?,status=?,notes=? WHERE id=?`).run(
-      client||null, subject||'', JSON.stringify(items||[]),
+      client||null, subject||'', items||'[]',
       subtotal||0, tax||0, taxAmt||0, total||0,
       paidAmount||0, projectId||null, currency||'INR', date||'', due||'', status||'Pending', notes||'', id
     );
