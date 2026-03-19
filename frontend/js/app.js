@@ -144,7 +144,7 @@ function renderDashboard(){
   const tc=document.getElementById('dashTrendChart');
   if(tc){
     const isMobile=window.innerWidth<600;
-    const bt=isMobile?7:18;
+    const bt=isMobile?5:18;
     const cp=isMobile?0.32:0.7;
     const bp=isMobile?1.0:0.9;
     dashCharts.trend=new Chart(tc,{type:'bar',data:{labels:months,datasets:[{label:'Studio',data:sm,backgroundColor:'rgba(54,132,219,0.65)',borderColor:'#3684DB',borderWidth:1,borderRadius:4,barThickness:bt,categoryPercentage:cp,barPercentage:bp},{label:'Labs',data:lm,backgroundColor:'rgba(245,158,11,0.65)',borderColor:'#F59E0B',borderWidth:1,borderRadius:4,barThickness:bt,categoryPercentage:cp,barPercentage:bp},{label:'Expenses',data:em,backgroundColor:'rgba(239,68,68,0.4)',borderColor:'#EF4444',borderWidth:1,borderRadius:4,barThickness:bt,categoryPercentage:cp,barPercentage:bp}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#758BA5',font:{size:10}},grid:{color:'rgba(54,132,219,0.05)'}},y:{ticks:{color:'#758BA5',font:{size:10},callback:v=>sym+(v/1000)+'K'},grid:{color:'rgba(54,132,219,0.05)'}}}}});}
