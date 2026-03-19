@@ -426,8 +426,8 @@
 <div class="page" id="page-products">
   <div class="sec-head">
     <div><div class="sec-title">Products</div><div class="sec-sub">SHUBIQ Labs product portfolio</div></div>
-    <div class="sec-actions">
-      <button class="btn btn-primary" onclick="openModal('addProductModal')">
+      <div class="sec-actions">
+        <button class="btn btn-primary" onclick="openAddProductModal()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
         Add Product
       </button>
@@ -610,8 +610,9 @@
     <div class="modal-title">New Project</div>
     <button class="tbtn" onclick="closeModal('addProjectModal')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
   </div>
-  <div class="modal-body">
-    <div class="form-row">
+    <div class="modal-body">
+      <input type="hidden" id="prod-id">
+      <div class="form-row">
       <div class="form-group"><label>Project Name *</label><input type="text" id="p-name" placeholder="e.g. Brand Identity Design"></div>
       <div class="form-group"><label>Client *</label><select id="p-client"><option value="">Select client...</option></select></div>
     </div>
@@ -813,10 +814,67 @@
   </div>
   <div class="modal-foot">
     <button class="btn btn-ghost" onclick="closeModal('addProductModal')">Cancel</button>
-    <button class="btn btn-primary" onclick="saveProduct()">Add Product</button>
+      <button class="btn btn-primary" onclick="saveProduct()">Save</button>
+    </div>
   </div>
-</div>
-</div>
+  </div>
+
+  <!-- PRODUCT DETAILS -->
+  <div class="modal-overlay" id="productDetailModal">
+  <div class="modal modal-premium" style="max-width:800px">
+    <div class="modal-head">
+      <div class="modal-title" id="prod-detail-title">Product Details</div>
+      <button class="tbtn" onclick="closeModal('productDetailModal')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <div class="card product-detail-card">
+        <div class="product-detail-head">
+          <div>
+            <div class="product-title" id="prod-detail-name"></div>
+            <div class="product-meta" id="prod-detail-cat"></div>
+            <div class="product-desc" id="prod-detail-desc"></div>
+          </div>
+          <div class="product-status" id="prod-detail-status"></div>
+        </div>
+        <div class="product-metrics">
+          <div class="metric">
+            <div class="metric-label">Monthly</div>
+            <div class="metric-value" id="prod-detail-monthly">—</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Yearly</div>
+            <div class="metric-value" id="prod-detail-yearly">—</div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Lifetime</div>
+            <div class="metric-value" id="prod-detail-lifetime">—</div>
+          </div>
+        </div>
+        <div class="product-foot">
+          <div class="product-launch" id="prod-detail-launch"></div>
+          <div class="product-rev" id="prod-detail-total"></div>
+        </div>
+      </div>
+
+      <div class="card product-tx-card">
+        <div class="card-header"><div class="card-title">Transactions</div></div>
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr><th>Date</th><th>Plan</th><th>Amount</th><th>Subscribers</th><th>Notes</th></tr>
+            </thead>
+            <tbody id="prod-detail-tx"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeModal('productDetailModal')">Close</button>
+      <button class="btn btn-ghost" onclick="openEditProduct()">Edit</button>
+      <button class="btn btn-danger" onclick="deleteProduct()">Delete</button>
+    </div>
+  </div>
+  </div>
 
 <!-- ADD SUBSCRIPTION ENTRY -->
 <div class="modal-overlay" id="addSubModal">
