@@ -187,8 +187,14 @@ router.put('/documents/:id', (req, res) => {
 
 router.delete('/documents/:id', (req, res) => {
   try {
+    const doc = db.prepare('SELECT type FROM documents WHERE id = ?').get(req.params.id);
+    if (!doc) return res.status(404).json({ error: 'Document not found' });
     const result = db.prepare('DELETE FROM documents WHERE id = ?').run(req.params.id);
     if (!result.changes) return res.status(404).json({ error: 'Document not found' });
+    const prefix = doc.type === 'invoice' ? 'INV' : doc.type === 'quotation' ? 'QUO' : 'PRO';
+    const maxRow = db.prepare("SELECT MAX(CAST(substr(num, 5) AS INTEGER)) as max FROM documents WHERE type = ?").get(doc.type);
+    const maxVal = maxRow && maxRow.max ? maxRow.max : 0;
+    db.prepare('UPDATE counters SET value = ? WHERE key = ?').run(maxVal, prefix);
     res.json({ success: true });
   } catch (err) {
     console.error(err);
