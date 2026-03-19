@@ -74,6 +74,7 @@ db.exec(`
     tax_amt   REAL DEFAULT 0,
     total     REAL DEFAULT 0,
     paid_amount REAL DEFAULT 0,
+    project_id TEXT REFERENCES projects(id) ON DELETE SET NULL,
     currency  TEXT DEFAULT 'INR',
     date      TEXT DEFAULT '',
     due_date  TEXT DEFAULT '',
@@ -153,6 +154,9 @@ const docCols = db.prepare("PRAGMA table_info(documents)").all().map(c => c.name
 if (!docCols.includes('paid_amount')) {
   db.prepare("ALTER TABLE documents ADD COLUMN paid_amount REAL DEFAULT 0").run();
 }
+if (!docCols.includes('project_id')) {
+  db.prepare("ALTER TABLE documents ADD COLUMN project_id TEXT").run();
+}
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
 function getCounter(key) {
@@ -209,7 +213,8 @@ function exportFullDB() {
       id: r.id, type: r.type, num: r.num, client: r.client_id,
       subject: r.subject, items: JSON.parse(r.items || '[]'),
       subtotal: r.subtotal, tax: r.tax, taxAmt: r.tax_amt,
-      total: r.total, paidAmount: r.paid_amount, currency: r.currency, date: r.date,
+      total: r.total, paidAmount: r.paid_amount, projectId: r.project_id,
+      currency: r.currency, date: r.date,
       due: r.due_date, status: r.status, notes: r.notes,
     }));
 

@@ -143,25 +143,26 @@ router.get('/documents', (req, res) => {
     id: r.id, type: r.type, num: r.num, client: r.client_id,
     subject: r.subject, items: JSON.parse(r.items || '[]'),
     subtotal: r.subtotal, tax: r.tax, taxAmt: r.tax_amt,
-    total: r.total, currency: r.currency, date: r.date,
+    total: r.total, paidAmount: r.paid_amount, projectId: r.project_id,
+    currency: r.currency, date: r.date,
     due: r.due_date, status: r.status, notes: r.notes,
   })));
 });
 
 router.post('/documents', (req, res) => {
   try {
-    const { type, client='', subject='', items=[], subtotal=0, tax=0, taxAmt=0, total=0, paidAmount=0, currency='INR', date='', due='', status='Pending', notes='' } = req.body;
+    const { type, client='', subject='', items=[], subtotal=0, tax=0, taxAmt=0, total=0, paidAmount=0, projectId='', currency='INR', date='', due='', status='Pending', notes='' } = req.body;
     if (!type) return res.status(400).json({ error: 'Type is required' });
     const prefix = type === 'invoice' ? 'INV' : type === 'quotation' ? 'QUO' : 'PRO';
     const count = incrementCounter(prefix);
     const num = `${prefix}-${String(count).padStart(3, '0')}`;
     const id = 'd' + Date.now();
-    db.prepare(`INSERT INTO documents (id,type,num,client_id,subject,items,subtotal,tax,tax_amt,total,paid_amount,currency,date,due_date,status,notes)
-                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`).run(
+    db.prepare(`INSERT INTO documents (id,type,num,client_id,subject,items,subtotal,tax,tax_amt,total,paid_amount,project_id,currency,date,due_date,status,notes)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`).run(
       id, type, num, client||null, subject, JSON.stringify(items),
-      subtotal, tax, taxAmt, total, paidAmount, currency, date, due, status, notes
+      subtotal, tax, taxAmt, total, paidAmount, projectId||null, currency, date, due, status, notes
     );
-    res.status(201).json({ id, type, num, client, subject, items, subtotal, tax, taxAmt, total, paidAmount, currency, date, due, status, notes });
+    res.status(201).json({ id, type, num, client, subject, items, subtotal, tax, taxAmt, total, paidAmount, projectId, currency, date, due, status, notes });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Failed to create document' });
@@ -171,11 +172,11 @@ router.post('/documents', (req, res) => {
 router.put('/documents/:id', (req, res) => {
   try {
     const { id } = req.params;
-    const { subject, items, subtotal, tax, taxAmt, total, paidAmount, currency, date, due, status, notes, client } = req.body;
-    const result = db.prepare(`UPDATE documents SET client_id=?,subject=?,items=?,subtotal=?,tax=?,tax_amt=?,total=?,paid_amount=?,currency=?,date=?,due_date=?,status=?,notes=? WHERE id=?`).run(
+    const { subject, items, subtotal, tax, taxAmt, total, paidAmount, projectId, currency, date, due, status, notes, client } = req.body;
+    const result = db.prepare(`UPDATE documents SET client_id=?,subject=?,items=?,subtotal=?,tax=?,tax_amt=?,total=?,paid_amount=?,project_id=?,currency=?,date=?,due_date=?,status=?,notes=? WHERE id=?`).run(
       client||null, subject||'', JSON.stringify(items||[]),
       subtotal||0, tax||0, taxAmt||0, total||0,
-      paidAmount||0, currency||'INR', date||'', due||'', status||'Pending', notes||'', id
+      paidAmount||0, projectId||null, currency||'INR', date||'', due||'', status||'Pending', notes||'', id
     );
     if (!result.changes) return res.status(404).json({ error: 'Document not found' });
     res.json({ success: true });
