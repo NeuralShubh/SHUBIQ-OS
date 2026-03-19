@@ -161,7 +161,7 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
 .col-span-3{grid-column:span 3}
 
 /* ── TABLES ── */
-.table-wrap{overflow-x:auto;border-radius:var(--radius-lg);border:1px solid var(--glass-border)}
+.table-wrap{overflow-x:auto;border-radius:var(--radius-lg);border:1px solid var(--glass-border);background:var(--glass)}
 .table-top{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--border);gap:12px;flex-wrap:wrap;background:rgba(6,21,37,0.5)}
 .table-top-left{display:flex;align-items:center;gap:10px}
 .table-title{font-family:var(--font-display);font-size:0.85rem;font-weight:700;color:var(--text2)}
@@ -170,7 +170,7 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
 .tbl-search input{background:none;border:none;outline:none;color:var(--text);font-family:var(--font-body);font-size:0.8rem;width:160px;line-height:1}
 .tbl-search input::placeholder{color:var(--text4)}
 .tbl-search svg{width:13px;height:13px;color:var(--text4);flex-shrink:0}
-table{width:100%;border-collapse:collapse;font-size:0.82rem;background:var(--glass)}
+table{width:100%;border-collapse:collapse;font-size:0.82rem;background:transparent}
 thead th{padding:11px 16px;text-align:left;font-size:0.7rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--text4);border-bottom:1px solid var(--border);white-space:nowrap;background:rgba(6,21,37,0.4);cursor:pointer;user-select:none}
 thead th:hover{color:var(--text3)}
 thead th svg{display:inline;width:11px;height:11px;margin-left:4px;opacity:0.5}
