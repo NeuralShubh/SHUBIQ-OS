@@ -77,6 +77,7 @@ const apiLimiter = rateLimit({
 app.use(express.static(path.join(__dirname, '../frontend'), {
   maxAge: 0,
   etag: true,
+  index: false,
   setHeaders: (res, filePath) => {
     if (/\.(html|css|js)$/.test(filePath)) {
       res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
