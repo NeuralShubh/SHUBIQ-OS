@@ -36,7 +36,7 @@ async function doLogin(){
 function doLogout(){setToken('');showLogin();showToast('Signed out','info');}
 document.getElementById('login-pass').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
 
-const PAGE_NAMES={dashboard:'Dashboard',projects:'Projects',clients:'Clients',invoices:'Documents',income:'Income',expenses:'Expenses',pnl:'P&L Report',products:'Products',subscriptions:'Income','labs-expenses':'Labs Expenses','labs-analytics':'Labs Analytics',documents:'Document Center',settings:'Settings'};
+const PAGE_NAMES={dashboard:'Dashboard','overall-expenses':'Overall Expenses',projects:'Projects',clients:'Clients',invoices:'Documents',income:'Income',expenses:'Expenses',pnl:'P&L Report',products:'Products',subscriptions:'Income','labs-expenses':'Labs Expenses','labs-analytics':'Labs Analytics',documents:'Document Center',settings:'Settings'};
 function nav(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.nitem').forEach(n=>n.classList.remove('active'));
@@ -47,6 +47,7 @@ function nav(id){
 }
 function renderPage(id){
   if(id==='dashboard')renderDashboard();
+  else if(id==='overall-expenses'){renderOverallExpenses();renderOverallExpStats();}
   else if(id==='projects')renderProjects();
   else if(id==='clients')renderClients();
   else if(id==='invoices'){renderDocs();renderDocStats();}
@@ -195,7 +196,7 @@ function buildDocHTML(d){const s=DB.settings;const cl=DB.clients.find(c=>c.id===
 function printDoc(){const c=document.getElementById('printable-doc');if(!c)return;const w=window.open('','_blank','width=900,height=700');w.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"><style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:'DM Sans',sans-serif;background:#0b1a2b;padding:24px;-webkit-print-color-adjust:exact;print-color-adjust:exact}a{color:#3684DB;text-decoration:none}.invoice-preview{background:#fff;color:#111;border-radius:18px;padding:40px;font-family:'DM Sans',sans-serif;max-width:760px;margin:0 auto;box-shadow:0 18px 40px rgba(2,10,20,0.18)}.invoice-preview h1{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:#1a1a2e}.inv-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:32px;padding-bottom:24px;border-bottom:2px solid #e8f4ff}.inv-meta{text-align:right}.inv-meta .inv-num{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:#3684DB}.inv-section{margin-bottom:24px}.inv-section-title{font-size:0.7rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#94a3b8;margin-bottom:8px}.inv-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px}.inv-label{font-size:0.72rem;color:#94a3b8;margin-bottom:2px}.inv-value{font-size:0.88rem;font-weight:500;color:#1e293b}table.inv-table{width:100%;border-collapse:collapse}table.inv-table thead th{background:#f8fafc;padding:10px 14px;text-align:left;font-size:0.72rem;font-weight:600;letter-spacing:0.05em;text-transform:uppercase;color:#64748b;border-bottom:1px solid #e2e8f0}table.inv-table tbody td{padding:12px 14px;border-bottom:1px solid #f1f5f9;font-size:0.85rem;color:#374151}.inv-totals{margin-left:auto;max-width:280px;margin-top:16px}.inv-total-row{display:flex;justify-content:space-between;padding:6px 0;font-size:0.85rem;color:#64748b;border-bottom:1px solid #f1f5f9}.inv-total-row.grand{font-size:1rem;font-weight:700;color:#1e293b;border-bottom:none;padding-top:10px;border-top:2px solid #3684DB;margin-top:4px}.inv-footer{margin-top:32px;padding-top:20px;border-top:1px solid #e2e8f0;font-size:0.78rem;color:#94a3b8}.inv-bank{background:#f8fafc;border-radius:8px;padding:14px;margin-top:12px;font-size:0.82rem}.inv-bank-title{font-weight:600;color:#374151;margin-bottom:6px;font-size:0.8rem}@media print{@page{margin:12mm}body{background:#0b1a2b;padding:0} .invoice-preview{box-shadow:none;margin:0 auto}}<\/style></head><body>${c.outerHTML}<script>window.onload=function(){window.print();setTimeout(()=>window.close(),1000)}<\/script></body></html>`);w.document.close();}
 function renderDocCenter(){const types=[{label:'Invoice',icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:24px;height:24px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>',type:'invoice',color:'#3684DB'},{label:'Quotation',icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:24px;height:24px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>',type:'quotation',color:'#8B5CF6'},{label:'Proposal',icon:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:24px;height:24px"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>',type:'proposal',color:'#F59E0B'}];document.getElementById('docs-grid').innerHTML=types.map(t=>{const count=DB.documents.filter(d=>d.type===t.type).length;const prefix=t.type==='invoice'?'INV':t.type==='quotation'?'QUO':'PRO';const next=prefix+'-'+String((DB.counters[prefix]||0)+1).padStart(3,'0');return`<div class="card" style="cursor:pointer" onclick="openNewDoc('${t.type}')"><div style="width:48px;height:48px;border-radius:12px;background:${t.color}18;border:1px solid ${t.color}30;display:flex;align-items:center;justify-content:center;color:${t.color};margin-bottom:14px">${t.icon}</div><div style="font-family:var(--font-display);font-size:1rem;font-weight:700;color:var(--text);margin-bottom:4px">New ${t.label}</div><div style="font-size:0.78rem;color:var(--text4);margin-bottom:14px">${count} created &middot; Next: ${next}</div><button class="btn btn-primary btn-sm" style="width:100%;justify-content:center"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>Create ${t.label}</button></div>`;}).join('');}
 
-let expFilter='',expCatFilter='',labsExpFilter='',labsExpCatFilter='',incomeFilter='',expCharts={},labsExpCharts={},incomeCharts={};
+let expFilter='',expCatFilter='',labsExpFilter='',labsExpCatFilter='',overallExpFilter='',overallExpCatFilter='',incomeFilter='',expCharts={},labsExpCharts={},overallExpCharts={},incomeCharts={};
 let currentExpenseScope='studio';
 const EXP_CATS={'Software':'#3684DB','Marketing':'#F59E0B','Payroll':'#22C55E','Office':'#8B5CF6','Infrastructure':'#EF4444','Travel':'#06B6D4','Misc':'#758BA5'};
 
@@ -245,6 +246,17 @@ function renderLabsExpStats(){
   document.getElementById('labs-exp-stats').innerHTML=`<div class="stat"><div class="stat-label">Total Expenses</div><div class="stat-value red">${fmt(total)}</div><div class="stat-change neutral">${data.length} entries</div><div class="stat-icon red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div></div><div class="stat"><div class="stat-label">This Month</div><div class="stat-value">${fmt(thisMonth)}</div><div class="stat-change neutral">Current month</div><div class="stat-icon amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/></svg></div></div><div class="stat"><div class="stat-label">Top Category</div><div class="stat-value" style="font-size:1.2rem">${topCat?topCat[0]:'-'}</div><div class="stat-change neutral">${topCat?fmt(topCat[1]):''}</div><div class="stat-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/></svg></div></div><div class="stat"><div class="stat-label">Avg Monthly</div><div class="stat-value">${fmt(total/12)}</div><div class="stat-change neutral">Per month</div><div class="stat-icon purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div></div>`;
 }
 
+function renderOverallExpStats(){
+  const data=getExpensesByScope('overall');
+  const total=data.reduce((s,e)=>s+e.amount,0);
+  const byCat={};data.forEach(e=>{byCat[e.category]=(byCat[e.category]||0)+e.amount;});
+  const topCat=Object.entries(byCat).sort((a,b)=>b[1]-a[1])[0];
+  const thisMonth=data.filter(e=>e.date&&e.date.startsWith(new Date().toISOString().substring(0,7))).reduce((s,e)=>s+e.amount,0);
+  const el=document.getElementById('overall-exp-stats');
+  if(!el)return;
+  el.innerHTML=`<div class="stat"><div class="stat-label">Total Expenses</div><div class="stat-value red">${fmt(total)}</div><div class="stat-change neutral">${data.length} entries</div><div class="stat-icon red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div></div><div class="stat"><div class="stat-label">This Month</div><div class="stat-value">${fmt(thisMonth)}</div><div class="stat-change neutral">Current month</div><div class="stat-icon amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/></svg></div></div><div class="stat"><div class="stat-label">Top Category</div><div class="stat-value" style="font-size:1.2rem">${topCat?topCat[0]:'-'}</div><div class="stat-change neutral">${topCat?fmt(topCat[1]):''}</div><div class="stat-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/></svg></div></div><div class="stat"><div class="stat-label">Avg Monthly</div><div class="stat-value">${fmt(total/12)}</div><div class="stat-change neutral">Per month</div><div class="stat-icon purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div></div>`;
+}
+
 function renderExpenses(){
   const dataScoped=getExpensesByScope('studio');
   const byCat={};
@@ -280,6 +292,44 @@ function renderExpenses(){
   }).join('')||'<tr><td colspan="7"><div class="empty-state"><h3>No Expenses</h3><p>Add your first expense</p></div></td></tr>';
   document.getElementById('expenses-tbody').innerHTML=rows;
 }
+
+function renderOverallExpenses(){
+  const dataScoped=getExpensesByScope('overall');
+  const byCat={};
+  dataScoped.forEach(e=>{byCat[e.category]=(byCat[e.category]||0)+e.amount;});
+
+  if(overallExpCharts.cat){overallExpCharts.cat.destroy();overallExpCharts.cat=null;}
+  const cc=document.getElementById('overallExpCatChart');
+  if(cc){
+    const cats=Object.entries(byCat).sort((a,b)=>b[1]-a[1]);
+    if(cats.length){
+      overallExpCharts.cat=new Chart(cc,{type:'doughnut',data:{labels:cats.map(c=>c[0]),datasets:[{data:cats.map(c=>c[1]),backgroundColor:cats.map(c=>EXP_CATS[c[0]]||'#758BA5'),borderColor:'#0D2237',borderWidth:2,hoverOffset:4}]},options:{responsive:true,maintainAspectRatio:false,cutout:'65%',plugins:{legend:{display:false}}}});
+      const total=Object.values(byCat).reduce((s,v)=>s+v,0);
+      document.getElementById('overall-exp-cat-legend').innerHTML=cats.map(c=>`<div class="qm-row"><div style="display:flex;align-items:center;gap:6px"><div class="dot" style="background:${EXP_CATS[c[0]]||'#758BA5'}"></div><div class="qm-label">${c[0]}</div></div><div><div class="qm-value">${fmt(c[1])}</div><div style="font-size:0.68rem;color:var(--text4)">${total>0?Math.round(c[1]/total*100):0}%</div></div></div>`).join('');
+    }
+  }
+
+  if(overallExpCharts.trend){overallExpCharts.trend.destroy();overallExpCharts.trend=null;}
+  const tc=document.getElementById('overallExpTrendChart');
+  const sym=cs(DB.settings.currency||'INR');
+  if(tc){
+    const months=['Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar'];
+    const data=buildMonthlyData(dataScoped,'amount','date');
+    overallExpCharts.trend=new Chart(tc,{type:'line',data:{labels:months,datasets:[{data,borderColor:'#EF4444',backgroundColor:'rgba(239,68,68,0.06)',fill:true,tension:0.4,pointRadius:3,pointBackgroundColor:'#EF4444'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#758BA5',font:{size:10}},grid:{color:'rgba(54,132,219,0.05)'}},y:{ticks:{color:'#758BA5',font:{size:10},callback:v=>sym+(v/1000)+'K'},grid:{color:'rgba(54,132,219,0.05)'}}}}});
+  }
+
+  let data=dataScoped;
+  if(overallExpFilter)data=data.filter(e=>e.description.toLowerCase().includes(overallExpFilter)||e.vendor.toLowerCase().includes(overallExpFilter));
+  if(overallExpCatFilter)data=data.filter(e=>e.category===overallExpCatFilter);
+  data=[...data].sort((a,b)=>new Date(b.date)-new Date(a.date));
+  const rows=data.map(e=>{
+    const notes=e.notes?`<div class="td-sub">${e.notes}</div>`:'';
+    return `<tr><td><div class="td-main">${e.description}</div>${notes}</td><td><span class="badge no-dot" style="background:${EXP_CATS[e.category]||'#758BA5'}18;color:${EXP_CATS[e.category]||'#758BA5'};border:1px solid ${EXP_CATS[e.category]||'#758BA5'}30">${e.category}</span></td><td style="font-weight:600;color:var(--red)">${fmtFull(e.amount,e.currency)}</td><td><span class="badge badge-gray no-dot" style="font-size:0.7rem">${e.currency}</span></td><td style="color:var(--text3);font-size:0.8rem">${formatDate(e.date)}</td><td style="color:var(--text3)">${e.vendor||'-'}</td><td><button class="btn btn-ghost btn-sm" onclick="deleteExpense('${e.id}')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:12px;height:12px"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a1 1 0 011-1h4a1 1 0 011 1v2"/></svg></button></td></tr>`;
+  }).join('')||'<tr><td colspan="7"><div class="empty-state"><h3>No Overall Expenses</h3><p>Add your first shared expense</p></div></td></tr>';
+  const tbody=document.getElementById('overall-expenses-tbody');
+  if(tbody)tbody.innerHTML=rows;
+}
+
 function renderLabsExpenses(){
   const dataScoped=getExpensesByScope('labs');
   const byCat={};
@@ -319,6 +369,8 @@ function filterExpenses(v){expFilter=v.toLowerCase();renderExpenses();}
 function filterExpensesByCategory(v){expCatFilter=v;renderExpenses();}
 function filterLabsExpenses(v){labsExpFilter=v.toLowerCase();renderLabsExpenses();}
 function filterLabsExpensesByCategory(v){labsExpCatFilter=v;renderLabsExpenses();}
+function filterOverallExpenses(v){overallExpFilter=v.toLowerCase();renderOverallExpenses();}
+function filterOverallExpensesByCategory(v){overallExpCatFilter=v;renderOverallExpenses();}
 
 async function saveExpense(){
   const description=document.getElementById('ex-desc').value.trim();
@@ -330,11 +382,12 @@ async function saveExpense(){
     closeModal('addExpenseModal');
     renderExpenses();renderExpStats();
     renderLabsExpenses();renderLabsExpStats();
+    renderOverallExpenses();renderOverallExpStats();
     renderDashboard();
     showToast('Expense added','success');
   }catch(e){showToast(e.message,'error');}
 }
-function deleteExpense(id){confirmAction('Delete this expense?',async()=>{try{await apiFetch('/api/expenses/'+id,{method:'DELETE'});DB.expenses=DB.expenses.filter(e=>e.id!==id);renderExpenses();renderExpStats();renderLabsExpenses();renderLabsExpStats();renderDashboard();showToast('Expense deleted','info');}catch(e){showToast(e.message,'error');}});}
+function deleteExpense(id){confirmAction('Delete this expense?',async()=>{try{await apiFetch('/api/expenses/'+id,{method:'DELETE'});DB.expenses=DB.expenses.filter(e=>e.id!==id);renderExpenses();renderExpStats();renderLabsExpenses();renderLabsExpStats();renderOverallExpenses();renderOverallExpStats();renderDashboard();showToast('Expense deleted','info');}catch(e){showToast(e.message,'error');}});}
 
 let pnlCharts={};
 let pnlYear = new Date().getFullYear();

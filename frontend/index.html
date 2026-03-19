@@ -44,10 +44,14 @@
     </div>
   </div>
   <nav class="snav">
-    <div class="nlabel">Overview</div>
+    <div class="nlabel">Overallview</div>
     <div class="nitem active" onclick="nav('dashboard')">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
       Dashboard
+    </div>
+    <div class="nitem" onclick="nav('overall-expenses')">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12V7H5a2 2 0 010-4h14v4"/><path d="M3 5v14a2 2 0 002 2h16v-5"/></svg>
+      Overall Expenses
     </div>
 
     <div class="nlabel">SHUBIQ Studio</div>
@@ -222,6 +226,55 @@
       </div>
       <div id="dash-outstanding"></div>
     </div>
+  </div>
+</div>
+
+<!-- OVERALL EXPENSES -->
+<div class="page" id="page-overall-expenses">
+  <div class="sec-head">
+    <div><div class="sec-title">Overall Expenses</div><div class="sec-sub">Company-wide spending across Studio &amp; Labs</div></div>
+    <div class="sec-actions">
+      <button class="btn btn-primary" onclick="openAddExpense('overall')">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Add Expense
+      </button>
+    </div>
+  </div>
+  <div class="stats-grid" id="overall-exp-stats"></div>
+  <div class="grid-2" style="margin-bottom:16px">
+    <div class="card">
+      <div class="card-header"><div class="card-title">Expense by Category</div></div>
+      <div style="display:flex;align-items:center;gap:16px">
+        <div class="chart-wrap" style="height:180px;width:180px;flex-shrink:0"><canvas id="overallExpCatChart"></canvas></div>
+        <div id="overall-exp-cat-legend" style="flex:1"></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header"><div class="card-title">Monthly Trend</div></div>
+      <div class="chart-wrap" style="height:180px"><canvas id="overallExpTrendChart"></canvas></div>
+    </div>
+  </div>
+  <div class="table-wrap">
+    <div class="table-top">
+      <div class="table-top-left"><div class="table-title">Expense Ledger</div></div>
+      <div style="display:flex;gap:8px">
+        <div class="tbl-search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" placeholder="Search expenses..." oninput="filterOverallExpenses(this.value)">
+        </div>
+        <select style="height:32px;width:auto;font-size:0.78rem" onchange="filterOverallExpensesByCategory(this.value)">
+          <option value="">All Categories</option>
+          <option>Software</option><option>Marketing</option><option>Payroll</option>
+          <option>Office</option><option>Infrastructure</option><option>Travel</option><option>Misc</option>
+        </select>
+      </div>
+    </div>
+    <table>
+      <thead>
+        <tr><th>Description</th><th>Category</th><th>Amount</th><th>Currency</th><th>Date</th><th>Vendor</th><th>Actions</th></tr>
+      </thead>
+      <tbody id="overall-expenses-tbody"></tbody>
+    </table>
   </div>
 </div>
 
