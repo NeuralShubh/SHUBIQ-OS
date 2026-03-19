@@ -109,7 +109,7 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
 .btn-icon{width:34px;height:34px;padding:0;justify-content:center}
 .btn-icon.sm{width:28px;height:28px}
 .actions-cell{white-space:nowrap}
-.action-row{display:inline-flex;align-items:center;gap:8px;padding:3px;background:rgba(10,26,40,0.45);border:1px solid rgba(54,132,219,0.14);border-radius:10px}
+.action-row{display:inline-flex;align-items:center;gap:6px;padding:2px;border-radius:10px}
 .action-row .btn{box-shadow:none}
 .action-row .btn-sm{height:30px}
 .action-row .btn-icon.sm{height:30px;width:30px}
