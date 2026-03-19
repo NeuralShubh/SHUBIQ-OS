@@ -119,8 +119,8 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
 .stat{background:var(--glass);backdrop-filter:blur(16px);border:1px solid var(--glass-border);border-radius:var(--radius-lg);padding:20px 22px;position:relative;overflow:hidden;transition:var(--trans)}
 .stat:hover{border-color:var(--border2);transform:translateY(-1px)}
 .stat::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent 50%,rgba(54,132,219,0.03));pointer-events:none}
-.stat-label{font-size:0.72rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--text4);margin-bottom:10px}
-.stat-value{font-family:var(--font-display);font-size:1.65rem;font-weight:700;color:var(--text);line-height:1;margin-bottom:8px}
+.stat-label{font-family:var(--font-body);font-size:0.72rem;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;color:var(--text4);margin-bottom:10px}
+.stat-value{font-family:var(--font-display);font-size:1.7rem;font-weight:800;color:var(--text);line-height:1.1;margin-bottom:8px;font-variant-numeric:tabular-nums;letter-spacing:0.01em}
 .stat-value.green{color:var(--green)}
 .stat-value.red{color:var(--red)}
 .stat-value.amber{color:var(--amber)}
