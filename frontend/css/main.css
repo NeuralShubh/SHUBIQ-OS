@@ -407,3 +407,11 @@ table.inv-table tbody td{padding:12px 14px;border-bottom:1px solid #f1f5f9;font-
   background-position:right 10px center;
   background-size:14px 14px;
 }
+
+/* --- P&L Month Navigation --- */
+.pnl-month-nav{display:flex;align-items:center;gap:8px;background:rgba(10,28,46,0.9);border:1px solid var(--border2);border-radius:12px;padding:6px}
+.pnl-nav-btn{width:30px;height:30px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text3);display:flex;align-items:center;justify-content:center;cursor:pointer}
+.pnl-nav-btn:hover{color:var(--text);border-color:var(--border2);background:var(--surface2)}
+.pnl-nav-btn svg{width:14px;height:14px}
+.pnl-nav-label{min-width:90px;text-align:center;font-size:0.82rem;font-weight:700;color:var(--text)}
+.pnl-year{height:30px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:0.78rem;padding:0 8px}
