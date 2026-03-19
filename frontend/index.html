@@ -384,10 +384,8 @@
     <div class="sec-head">
     <div><div class="sec-title">Profit &amp; Loss Report</div><div class="sec-sub">Full financial overview</div></div>
       <div class="sec-actions">
-        <div class="pnl-month-nav">
-          <button class="pnl-nav-btn" onclick="prevPnlMonth()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg></button>
-          <div class="pnl-nav-label" id="pnl-month-label">Mar 2026</div>
-          <button class="pnl-nav-btn" onclick="nextPnlMonth()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>
+        <div class="pnl-year-only">
+          <span>Year</span>
           <select class="pnl-year" id="pnl-year" onchange="renderPnL()"></select>
         </div>
       </div>
