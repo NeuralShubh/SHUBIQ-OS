@@ -108,6 +108,11 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
 .btn-sm svg{width:12px;height:12px}
 .btn-icon{width:34px;height:34px;padding:0;justify-content:center}
 .btn-icon.sm{width:28px;height:28px}
+.actions-cell{white-space:nowrap}
+.action-row{display:inline-flex;align-items:center;gap:8px;padding:3px;background:rgba(10,26,40,0.45);border:1px solid rgba(54,132,219,0.14);border-radius:10px}
+.action-row .btn{box-shadow:none}
+.action-row .btn-sm{height:30px}
+.action-row .btn-icon.sm{height:30px;width:30px}
 
 /* ── CARDS ── */
 .card{background:var(--glass);backdrop-filter:blur(16px);border:1px solid var(--glass-border);border-radius:var(--radius-lg);padding:20px}
