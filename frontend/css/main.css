@@ -378,3 +378,7 @@ table.inv-table tbody td{padding:12px 14px;border-bottom:1px solid #f1f5f9;font-
 .table thead th{text-align:left;font-size:0.7rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--text4);padding:8px 10px;border-bottom:1px solid var(--border)}
 .table tbody td{padding:10px;border-bottom:1px solid rgba(54,132,219,0.08);font-size:0.82rem;color:var(--text2)}
 .table tbody tr:hover td{background:rgba(54,132,219,0.06)}
+
+/* --- PRODUCT DETAILS ACTIONS --- */
+#productDetailModal .modal-actions{display:flex;justify-content:flex-end;gap:10px;padding:14px 18px;border-top:1px solid rgba(54,132,219,0.15);background:linear-gradient(180deg,rgba(8,23,38,0.65),rgba(8,23,38,0.9));border-bottom-left-radius:18px;border-bottom-right-radius:18px}
+#productDetailModal .modal-actions .btn{min-width:90px}
