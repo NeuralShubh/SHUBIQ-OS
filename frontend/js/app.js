@@ -279,7 +279,7 @@ function renderIncome(){
   if(sc){const items=Object.entries(byClient).sort((a,b)=>b[1]-a[1]);if(items.length){incomeCharts.split=new Chart(sc,{type:'doughnut',data:{labels:items.map(i=>i[0]),datasets:[{data:items.map(i=>i[1]),backgroundColor:items.map((_,i)=>['#22C55E','#3684DB','#F59E0B','#8B5CF6','#06B6D4','#EF4444'][i%6]),borderColor:'#0D2237',borderWidth:2,hoverOffset:4}]},options:{responsive:true,maintainAspectRatio:false,cutout:'65%',plugins:{legend:{display:false}}}});const total=items.reduce((s,i)=>s+i[1],0);document.getElementById('inc-split-legend').innerHTML=items.map((i,idx)=>`<div class="qm-row"><div style="display:flex;align-items:center;gap:6px"><div class="dot" style="background:${['#22C55E','#3684DB','#F59E0B','#8B5CF6','#06B6D4','#EF4444'][idx%6]}"></div><div class="qm-label">${i[0]}</div></div><div><div class="qm-value">${fmt(i[1])}</div><div style="font-size:0.68rem;color:var(--text4)">${total>0?Math.round(i[1]/total*100):0}%</div></div></div>`).join('');}}
   if(incomeCharts.trend){incomeCharts.trend.destroy();incomeCharts.trend=null;}
   const tc=document.getElementById('incTrendChart');const sym=cs(DB.settings.currency||'INR');
-  if(tc){const months=['Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar'];const data=buildMonthlyData(invs.map(d=>({amount:d.status==='Paid'?d.total:(d.paidAmount||0),date:d.date})),'amount','date');incomeCharts.trend=new Chart(tc,{type:'line',data:{labels:months,datasets:[{data,borderColor:'#22C55E',backgroundColor:'rgba(34,197,94,0.08)',fill:true,tension:0.4,pointRadius:3,pointBackgroundColor:'#22C55E'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#758BA5',font:{size:10}},grid:{color:'rgba(54,132,219,0.05)'}},y:{ticks:{color:'#758BA5',font:{size:10},callback:v=>sym+(v/1000)+'K'},grid:{color:'rgba(54,132,219,0.05)'}}}}});}
+  if(tc){const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];const data=buildMonthlyDataCalendar(invs.map(d=>({amount:d.status==='Paid'?d.total:(d.paidAmount||0),date:d.date})),'amount','date');incomeCharts.trend=new Chart(tc,{type:'line',data:{labels:months,datasets:[{data,borderColor:'#22C55E',backgroundColor:'rgba(34,197,94,0.08)',fill:true,tension:0.4,pointRadius:3,pointBackgroundColor:'#22C55E'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#758BA5',font:{size:10}},grid:{color:'rgba(54,132,219,0.05)'}},y:{ticks:{color:'#758BA5',font:{size:10},callback:v=>sym+(v/1000)+'K'},grid:{color:'rgba(54,132,219,0.05)'}}}}});}
   let data=invs;if(incomeFilter)data=data.filter(d=>d.num.toLowerCase().includes(incomeFilter)||d.subject.toLowerCase().includes(incomeFilter)||(getClientName(d.client)||'').toLowerCase().includes(incomeFilter));
   data=[...data].sort((a,b)=>new Date(b.date)-new Date(a.date));
   document.getElementById('income-tbody').innerHTML=data.map(d=>{const cl=getClientName(d.client);const amt=d.status==='Paid'?d.total:(d.paidAmount||0);const sb=d.status==='Paid'?'badge-green':'badge-amber';return`<tr><td><span style="font-family:var(--font-display);font-size:0.82rem;font-weight:700;color:var(--text)">${d.num}</span></td><td>${cl||'-'}</td><td style="font-weight:600;color:var(--green)">${fmtFull(amt,d.currency)}</td><td><span class="badge badge-gray no-dot" style="font-size:0.7rem">${d.currency}</span></td><td style="color:var(--text3);font-size:0.8rem">${formatDate(d.date)}</td><td><span class="badge ${sb} no-dot">${d.status}</span></td><td><button class="btn btn-ghost btn-sm" onclick="viewDoc('${d.id}')">View</button></td></tr>`;}).join('')||'<tr><td colspan="7"><div class="empty-state"><h3>No Income</h3><p>Record payments to see income here</p></div></td></tr>';
@@ -335,8 +335,8 @@ function renderExpenses(){
   const tc=document.getElementById('expTrendChart');
   const sym=cs(DB.settings.currency||'INR');
   if(tc){
-    const months=['Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar'];
-    const data=buildMonthlyData(dataScoped,'amount','date');
+    const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const data=buildMonthlyDataCalendar(dataScoped,'amount','date');
     expCharts.trend=new Chart(tc,{type:'line',data:{labels:months,datasets:[{data,borderColor:'#EF4444',backgroundColor:'rgba(239,68,68,0.06)',fill:true,tension:0.4,pointRadius:3,pointBackgroundColor:'#EF4444'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#758BA5',font:{size:10}},grid:{color:'rgba(54,132,219,0.05)'}},y:{ticks:{color:'#758BA5',font:{size:10},callback:v=>sym+(v/1000)+'K'},grid:{color:'rgba(54,132,219,0.05)'}}}}});
   }
 
@@ -371,8 +371,8 @@ function renderOverallExpenses(){
   const tc=document.getElementById('overallExpTrendChart');
   const sym=cs(DB.settings.currency||'INR');
   if(tc){
-    const months=['Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar'];
-    const data=buildMonthlyData(dataScoped,'amount','date');
+    const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const data=buildMonthlyDataCalendar(dataScoped,'amount','date');
     overallExpCharts.trend=new Chart(tc,{type:'line',data:{labels:months,datasets:[{data,borderColor:'#EF4444',backgroundColor:'rgba(239,68,68,0.06)',fill:true,tension:0.4,pointRadius:3,pointBackgroundColor:'#EF4444'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#758BA5',font:{size:10}},grid:{color:'rgba(54,132,219,0.05)'}},y:{ticks:{color:'#758BA5',font:{size:10},callback:v=>sym+(v/1000)+'K'},grid:{color:'rgba(54,132,219,0.05)'}}}}});
   }
 
@@ -408,8 +408,8 @@ function renderLabsExpenses(){
   const tc=document.getElementById('labsExpTrendChart');
   const sym=cs(DB.settings.currency||'INR');
   if(tc){
-    const months=['Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar'];
-    const data=buildMonthlyData(dataScoped,'amount','date');
+    const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const data=buildMonthlyDataCalendar(dataScoped,'amount','date');
     labsExpCharts.trend=new Chart(tc,{type:'line',data:{labels:months,datasets:[{data,borderColor:'#EF4444',backgroundColor:'rgba(239,68,68,0.06)',fill:true,tension:0.4,pointRadius:3,pointBackgroundColor:'#EF4444'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{color:'#758BA5',font:{size:10}},grid:{color:'rgba(54,132,219,0.05)'}},y:{ticks:{color:'#758BA5',font:{size:10},callback:v=>sym+(v/1000)+'K'},grid:{color:'rgba(54,132,219,0.05)'}}}}});
   }
 
