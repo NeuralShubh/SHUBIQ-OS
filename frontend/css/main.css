@@ -340,7 +340,7 @@ table.inv-table tbody td{padding:12px 14px;border-bottom:1px solid #f1f5f9;font-
   #mobile-menu-btn{display:flex!important}
 }
 @media(max-width:600px){
-  .stats-grid{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
   .topbar-search{display:none}
   .chart-wrap{height:180px!important}
   .chart-wrap canvas{max-height:180px!important}
