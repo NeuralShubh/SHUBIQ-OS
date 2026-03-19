@@ -84,6 +84,11 @@ function buildMonthlyData(records,vKey,dKey){
   const arr=new Array(12).fill(0);const fyS=DB.settings.fyStart==='January'?0:3;
   records.forEach(r=>{const d=new Date(r[dKey]);if(isNaN(d))return;arr[(d.getMonth()-fyS+12)%12]+=(r[vKey]||0);});return arr;
 }
+function buildMonthlyDataCalendar(records,vKey,dKey){
+  const arr=new Array(12).fill(0);
+  records.forEach(r=>{const d=new Date(r[dKey]);if(isNaN(d))return;arr[d.getMonth()]+=(r[vKey]||0);});
+  return arr;
+}
 
 let dashCharts={};
 function renderDashboard(){
@@ -413,9 +418,9 @@ function renderPnL(){
   const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   const inYear = d => {const dt=new Date(d); return !isNaN(dt) && dt.getFullYear()===pnlYear;};
 
-  const sm = buildMonthlyData(DB.documents.filter(d=>d.type==='invoice'&&d.status==='Paid'&&inYear(d.date)),'total','date');
-  const lm = buildMonthlyData(DB.subscriptions.filter(s=>inYear(s.date)),'amount','date');
-  const em = buildMonthlyData(DB.expenses.filter(e=>inYear(e.date)),'amount','date');
+  const sm = buildMonthlyDataCalendar(DB.documents.filter(d=>d.type==='invoice'&&d.status==='Paid'&&inYear(d.date)),'total','date');
+  const lm = buildMonthlyDataCalendar(DB.subscriptions.filter(s=>inYear(s.date)),'amount','date');
+  const em = buildMonthlyDataCalendar(DB.expenses.filter(e=>inYear(e.date)),'amount','date');
   const ti = sm.map((v,i)=>v+lm[i]);
   const nm = ti.map((v,i)=>v-em[i]);
   const tr = ti.reduce((s,v)=>s+v,0);
