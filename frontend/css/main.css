@@ -260,11 +260,11 @@ select option{background:var(--bg3)}
 .filter-pill svg{width:12px;height:12px}
 
 /* ── INVOICE PREVIEW ── */
-.invoice-preview{background:#fff;color:#111;border-radius:var(--radius-lg);padding:40px;font-family:'DM Sans',sans-serif;max-width:760px;margin:0 auto}
-.invoice-preview h1{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:#1a1a2e}
+.invoice-preview{background:#fff;color:#111;border-radius:var(--radius-lg);padding:40px;font-family:var(--font-body);max-width:760px;margin:0 auto}
+.invoice-preview h1{font-family:var(--font-display);font-size:2rem;font-weight:800;color:#1a1a2e}
 .inv-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:32px;padding-bottom:24px;border-bottom:2px solid #e8f4ff}
 .inv-meta{text-align:right}
-.inv-meta .inv-num{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:#3684DB}
+.inv-meta .inv-num{font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:#3684DB}
 .inv-status-badge{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:20px;font-size:0.72rem;font-weight:600;background:#f0f9ff;color:#3684DB;border:1px solid #bfdbfe;margin-top:6px}
 .inv-section{margin-bottom:24px}
 .inv-section-title{font-size:0.7rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#94a3b8;margin-bottom:8px}
