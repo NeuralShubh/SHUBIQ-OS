@@ -86,17 +86,26 @@ function buildMonthlyData(records,vKey,dKey){
 
 let dashCharts={};
 function renderDashboard(){
-  const si=DB.documents.filter(d=>d.type==='invoice'&&d.status==='Paid').reduce((s,d)=>s+d.total,0);
+  const siRaw=DB.documents.filter(d=>d.type==='invoice'&&d.status==='Paid').reduce((s,d)=>s+d.total,0);
+  const projPaid=DB.projects.reduce((s,p)=>s+(p.paid||0),0);
+  const si=siRaw>0?siRaw:projPaid;
   const li=DB.subscriptions.reduce((s,x)=>s+x.amount,0);
   const te=DB.expenses.reduce((s,e)=>s+e.amount,0);
-  const np=si+li-te;const out=DB.documents.filter(d=>d.type==='invoice'&&d.status==='Pending').reduce((s,d)=>s+d.total,0);
+  const np=si+li-te;
+  const outInv=DB.documents.filter(d=>d.type==='invoice'&&d.status==='Pending').reduce((s,d)=>s+d.total,0);
+  const outProj=DB.projects.reduce((s,p)=>s+Math.max((p.budget||0)-(p.paid||0),0),0);
+  const out=outInv>0?outInv:outProj;
+  const outLabel=outInv>0?`${DB.documents.filter(d=>d.type==='invoice'&&d.status==='Pending').length} invoices`:`${DB.projects.filter(p=>Math.max((p.budget||0)-(p.paid||0),0)>0).length} projects`;
   document.getElementById('dash-stats').innerHTML=`
     <div class="stat"><div class="stat-label">Total Revenue</div><div class="stat-value">${fmt(si+li)}</div><div class="stat-change up">Combined</div><div class="stat-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div></div>
     <div class="stat"><div class="stat-label">Net Profit</div><div class="stat-value ${np>=0?'green':'red'}">${fmt(np)}</div><div class="stat-change ${np>=0?'up':'down'}">${np>=0?'Profitable':'Loss'}</div><div class="stat-icon ${np>=0?'green':'red'}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div></div>
-    <div class="stat"><div class="stat-label">Outstanding</div><div class="stat-value amber">${fmt(out)}</div><div class="stat-change neutral">${DB.documents.filter(d=>d.type==='invoice'&&d.status==='Pending').length} invoices</div><div class="stat-icon amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg></div></div>
+    <div class="stat"><div class="stat-label">Outstanding</div><div class="stat-value amber">${fmt(out)}</div><div class="stat-change neutral">${outLabel}</div><div class="stat-icon amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg></div></div>
     <div class="stat"><div class="stat-label">Total Expenses</div><div class="stat-value red">${fmt(te)}</div><div class="stat-change neutral">${DB.expenses.length} entries</div><div class="stat-icon red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12V7H5a2 2 0 010-4h14v4"/><path d="M3 5v14a2 2 0 002 2h16v-5"/></svg></div></div>`;
   const months=['Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec','Jan','Feb','Mar'];
-  const sm=buildMonthlyData(DB.documents.filter(d=>d.type==='invoice'&&d.status==='Paid'),'total','date');
+  const studioRecords=siRaw>0
+    ? DB.documents.filter(d=>d.type==='invoice'&&d.status==='Paid').map(d=>({amount:d.total,date:d.date}))
+    : DB.projects.filter(p=>p.paid>0).map(p=>({amount:p.paid,date:p.start||p.due||''}));
+  const sm=buildMonthlyData(studioRecords,'amount','date');
   const lm=buildMonthlyData(DB.subscriptions,'amount','date');
   const em=buildMonthlyData(DB.expenses,'amount','date');
   const sym=cs(DB.settings.currency||'INR');
