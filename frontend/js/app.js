@@ -92,17 +92,41 @@ function buildMonthlyDataCalendar(records,vKey,dKey){
 }
 
 let dashCharts={};
+let dashYear = new Date().getFullYear();
+
+function ensureDashYears(){
+  const sel=document.getElementById('dash-year');
+  if(!sel) return;
+  const years=new Set();
+  const dates=[
+    ...DB.documents.map(d=>d.date),
+    ...DB.subscriptions.map(s=>s.date),
+    ...DB.expenses.map(e=>e.date),
+    ...DB.projects.map(p=>p.start||p.due||''),
+  ];
+  dates.forEach(d=>{const dt=new Date(d); if(!isNaN(dt)) years.add(dt.getFullYear());});
+  if(years.size===0){years.add(new Date().getFullYear());}
+  const list=[...years].sort((a,b)=>a-b);
+  sel.innerHTML=list.map(y=>`<option value="${y}">${y}</option>`).join('');
+  if(!list.includes(dashYear)) dashYear=list[list.length-1];
+  sel.value=String(dashYear);
+}
 function renderDashboard(){
-  const siRaw=DB.documents.filter(d=>d.type==='invoice'&&d.status==='Paid').reduce((s,d)=>s+d.total,0);
-  const projPaid=DB.projects.reduce((s,p)=>s+(p.paid||0),0);
+  ensureDashYears();
+  const yearSel=document.getElementById('dash-year');
+  if(yearSel) dashYear=parseInt(yearSel.value,10);
+  const inYear = d => {const dt=new Date(d); return !isNaN(dt) && dt.getFullYear()===dashYear;};
+
+  const siRaw=DB.documents.filter(d=>d.type==='invoice'&&d.status==='Paid'&&inYear(d.date)).reduce((s,d)=>s+d.total,0);
+  const projPaid=DB.projects.filter(p=>inYear(p.start||p.due||'')).reduce((s,p)=>s+(p.paid||0),0);
   const si=siRaw>0?siRaw:projPaid;
-  const li=DB.subscriptions.reduce((s,x)=>s+x.amount,0);
-  const te=DB.expenses.reduce((s,e)=>s+e.amount,0);
+  const li=DB.subscriptions.filter(s=>inYear(s.date)).reduce((s,x)=>s+x.amount,0);
+  const te=DB.expenses.filter(e=>inYear(e.date)).reduce((s,e)=>s+e.amount,0);
   const np=si+li-te;
-  const outInv=DB.documents.filter(d=>d.type==='invoice'&&d.status!=='Paid').reduce((s,d)=>s+Math.max(d.total-(d.paidAmount||0),0),0);
-  const outProj=DB.projects.reduce((s,p)=>s+Math.max((p.budget||0)-(p.paid||0),0),0);
+  const outInv=DB.documents.filter(d=>d.type==='invoice'&&d.status!=='Paid'&&inYear(d.date)).reduce((s,d)=>s+Math.max(d.total-(d.paidAmount||0),0),0);
+  const outProj=DB.projects.filter(p=>inYear(p.start||p.due||'')).reduce((s,p)=>s+Math.max((p.budget||0)-(p.paid||0),0),0);
   const out=outInv>0?outInv:outProj;
-  const outLabel=outInv>0?`${DB.documents.filter(d=>d.type==='invoice'&&d.status!=='Paid').length} invoices`:`${DB.projects.filter(p=>Math.max((p.budget||0)-(p.paid||0),0)>0).length} projects`;
+  const outLabel=outInv>0?`${DB.documents.filter(d=>d.type==='invoice'&&d.status!=='Paid'&&inYear(d.date)).length} invoices`:`${DB.projects.filter(p=>inYear(p.start||p.due||'')&&Math.max((p.budget||0)-(p.paid||0),0)>0).length} projects`;
   document.getElementById('dash-stats').innerHTML=`
     <div class="stat"><div class="stat-label">Total Revenue</div><div class="stat-value">${fmt(si+li)}</div><div class="stat-change up">Combined</div><div class="stat-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div></div>
     <div class="stat"><div class="stat-label">Net Profit</div><div class="stat-value ${np>=0?'green':'red'}">${fmt(np)}</div><div class="stat-change ${np>=0?'up':'down'}">${np>=0?'Profitable':'Loss'}</div><div class="stat-icon ${np>=0?'green':'red'}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div></div>
@@ -110,11 +134,11 @@ function renderDashboard(){
     <div class="stat"><div class="stat-label">Total Expenses</div><div class="stat-value red">${fmt(te)}</div><div class="stat-change neutral">${DB.expenses.length} entries</div><div class="stat-icon red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12V7H5a2 2 0 010-4h14v4"/><path d="M3 5v14a2 2 0 002 2h16v-5"/></svg></div></div>`;
   const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   const studioRecords=siRaw>0
-    ? DB.documents.filter(d=>d.type==='invoice'&&d.status==='Paid').map(d=>({amount:d.total,date:d.date}))
-    : DB.projects.filter(p=>p.paid>0).map(p=>({amount:p.paid,date:p.start||p.due||''}));
+    ? DB.documents.filter(d=>d.type==='invoice'&&d.status==='Paid'&&inYear(d.date)).map(d=>({amount:d.total,date:d.date}))
+    : DB.projects.filter(p=>inYear(p.start||p.due||'')&&p.paid>0).map(p=>({amount:p.paid,date:p.start||p.due||''}));
   const sm=buildMonthlyDataCalendar(studioRecords,'amount','date');
-  const lm=buildMonthlyDataCalendar(DB.subscriptions,'amount','date');
-  const em=buildMonthlyDataCalendar(DB.expenses,'amount','date');
+  const lm=buildMonthlyDataCalendar(DB.subscriptions.filter(s=>inYear(s.date)),'amount','date');
+  const em=buildMonthlyDataCalendar(DB.expenses.filter(e=>inYear(e.date)),'amount','date');
   const sym=cs(DB.settings.currency||'INR');
   if(dashCharts.trend){dashCharts.trend.destroy();dashCharts.trend=null;}
   const tc=document.getElementById('dashTrendChart');

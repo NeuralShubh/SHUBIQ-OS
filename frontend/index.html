@@ -164,11 +164,10 @@
       <div class="sec-sub">Here's your business overview for <span id="dash-date"></span></div>
     </div>
     <div class="sec-actions">
-      <select style="width:auto;height:36px;font-size:0.8rem" id="dash-period" onchange="updateDashboard()">
-        <option value="fy">FY 2025-26</option>
-        <option value="month">This Month</option>
-        <option value="q">This Quarter</option>
-      </select>
+      <div class="pnl-year-only">
+        <span>Year</span>
+        <select class="pnl-year" id="dash-year" onchange="renderDashboard()"></select>
+      </div>
       <button class="btn btn-ghost" onclick="openQuickAdd()">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
         Add Transaction
