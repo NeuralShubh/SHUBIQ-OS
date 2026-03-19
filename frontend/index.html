@@ -138,9 +138,20 @@
     </div>
   </div>
   <div class="topbar-right">
-    <button class="tbtn notif-dot" title="Notifications">
+    <div class="notif-wrap">
+      <button class="tbtn notif-dot" title="Notifications" onclick="toggleNotif(event)">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg>
-    </button>
+      </button>
+      <div class="notif-panel" id="notif-panel">
+        <div class="notif-head">
+          <div class="notif-title">Outstanding Projects</div>
+          <button class="tbtn" onclick="toggleNotif(event)" aria-label="Close">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <div class="notif-body" id="notif-body"></div>
+      </div>
+    </div>
     <div class="status-indicator">
       <div class="sdot"></div>
       <span>Live</span>

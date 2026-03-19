@@ -156,8 +156,36 @@ function renderDashboard(){
   document.getElementById('dash-deadlines').innerHTML=up.map(p=>{const cl=DB.clients.find(c=>c.id===p.client);const dl=Math.ceil((new Date(p.due)-new Date())/(1000*60*60*24));const urg=dl<=7?'red':dl<=21?'amber':'green';return`<div class="hover-row" onclick="nav('projects')"><div><div style="font-size:0.83rem;font-weight:600;color:var(--text)">${p.name}</div><div style="font-size:0.72rem;color:var(--text4)">${cl?cl.name:'-'}</div></div><div style="text-align:right"><div class="badge badge-${urg} no-dot" style="font-size:0.68rem">${dl>0?dl+'d left':'Overdue'}</div><div style="font-size:0.7rem;color:var(--text4);margin-top:3px">${formatDate(p.due)}</div></div></div>`;}).join('')||'<div class="empty-state" style="padding:30px 20px"><p>No upcoming deadlines</p></div>';
   const outs=DB.documents.filter(d=>d.type==='invoice'&&d.status==='Pending');
   document.getElementById('dash-outstanding').innerHTML=outs.map(d=>{const cl=DB.clients.find(c=>c.id===d.client);const ov=new Date(d.due)<new Date();return`<div class="hover-row" onclick="nav('invoices')"><div><div style="font-size:0.83rem;font-weight:600;color:var(--text)">${d.num}</div><div style="font-size:0.72rem;color:var(--text4)">${cl?cl.name:'-'}</div></div><div style="text-align:right"><div style="font-size:0.88rem;font-weight:600;color:var(--amber)">${fmtFull(d.total,d.currency)}</div><div class="badge badge-${ov?'red':'amber'} no-dot" style="font-size:0.68rem;margin-top:3px">${ov?'Overdue':'Pending'}</div></div></div>`;}).join('')||'<div class="empty-state" style="padding:30px 20px"><p>No outstanding payments</p></div>';
+  renderOutstandingNotif();
 }
 function updateDashboard(){renderDashboard();}
+
+function renderOutstandingNotif(){
+  const body=document.getElementById('notif-body');
+  if(!body) return;
+  const items=DB.projects
+    .map(p=>({id:p.id,name:p.name,client:getClientName(p.client),due:p.due,remaining:Math.max((p.budget||0)-(p.paid||0),0),currency:p.currency}))
+    .filter(p=>p.remaining>0)
+    .sort((a,b)=>b.remaining-a.remaining);
+  body.innerHTML=items.length
+    ? items.map(p=>`<div class="notif-item" onclick="nav('projects')"><div><div class="notif-name">${p.name}</div><div class="notif-sub">${p.client||'-'} • Due ${formatDate(p.due)}</div></div><div class="notif-amt">${fmtFull(p.remaining,p.currency||DB.settings.currency||'INR')}</div></div>`).join('')
+    : `<div class="notif-empty">No outstanding projects</div>`;
+}
+
+function toggleNotif(e){
+  if(e) e.stopPropagation();
+  const panel=document.getElementById('notif-panel');
+  if(!panel) return;
+  if(panel.classList.contains('show')){panel.classList.remove('show');return;}
+  renderOutstandingNotif();
+  panel.classList.add('show');
+}
+
+document.addEventListener('click',e=>{
+  const panel=document.getElementById('notif-panel');
+  if(!panel) return;
+  if(panel.classList.contains('show') && !e.target.closest('.notif-wrap')) panel.classList.remove('show');
+});
 
 let projFilter='',projStatusFilter='';
 function renderProjects(){

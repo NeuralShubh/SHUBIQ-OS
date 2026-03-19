@@ -48,6 +48,18 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
 .tbtn svg{width:16px;height:16px}
 .notif-dot{position:relative}
 .notif-dot::after{content:'';position:absolute;top:6px;right:6px;width:6px;height:6px;background:var(--accent);border-radius:50%;border:1px solid var(--bg2)}
+.notif-wrap{position:relative}
+.notif-panel{position:absolute;right:0;top:42px;width:320px;max-width:90vw;background:var(--bg3);border:1px solid var(--border2);border-radius:14px;box-shadow:0 14px 40px rgba(0,0,0,0.35);padding:12px;display:none;z-index:120}
+.notif-panel.show{display:block}
+.notif-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.notif-title{font-size:0.85rem;font-weight:700;color:var(--text)}
+.notif-body{max-height:280px;overflow:auto;padding-right:4px}
+.notif-item{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px;border-radius:10px;border:1px solid transparent}
+.notif-item:hover{background:var(--surface2);border-color:var(--border)}
+.notif-name{font-size:0.82rem;color:var(--text);font-weight:600}
+.notif-sub{font-size:0.72rem;color:var(--text4)}
+.notif-amt{font-size:0.82rem;font-weight:700;color:var(--amber);white-space:nowrap}
+.notif-empty{padding:18px;text-align:center;color:var(--text4);font-size:0.78rem}
 .status-indicator{display:flex;align-items:center;gap:6px;font-size:0.75rem;color:var(--text3);padding:0 8px;border:1px solid var(--border);border-radius:8px;height:34px;background:var(--surface)}
 .sdot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 6px var(--green-glow)}
 
