@@ -325,3 +325,33 @@ table.inv-table tbody td{padding:12px 14px;border-bottom:1px solid #f1f5f9;font-
   .invoice-preview{box-shadow:none!important;border:none!important;padding:0!important}
   a{color:#3684DB!important;text-decoration:underline!important}
 }
+
+/* ---- PRINT STYLES ---- */
+.print-only{display:none}
+@media print{
+  @page{margin:16mm}
+  body{background:#fff;color:#111}
+  .app{display:block}
+  .sidebar,.topbar,.sec-actions,.tbtn,.btn,.chart-wrap,.nitem,.sfooter,.snav,.topbar-search,.breadcrumb,.status-indicator,.notif-dot{display:none !important}
+  .page{display:block !important;min-height:auto;padding:0}
+  #page-pnl{padding:0}
+  .card{background:transparent;border:none;box-shadow:none}
+  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:12px 0 16px}
+  .stat{border:1px solid #e5e7eb;background:#fff}
+  .stat-label{color:#555}
+  .stat-value{color:#111}
+  .stat-change{color:#666}
+  .print-only{display:flex}
+  .print-header{justify-content:space-between;align-items:flex-end;border-bottom:2px solid #111;padding-bottom:10px;margin-bottom:14px}
+  .print-title{font-family:var(--font-display);font-size:18pt;font-weight:700;color:#111}
+  .print-sub{font-size:10pt;color:#444;margin-top:2px}
+  .print-right{text-align:right}
+  .print-biz{font-weight:700;font-size:11pt;color:#111}
+  .print-date{font-size:9pt;color:#666;margin-top:4px}
+  .print-footer{justify-content:space-between;align-items:center;border-top:1px solid #e5e7eb;margin-top:12px;padding-top:8px;font-size:9pt;color:#666}
+  .print-page::after{content:counter(page)}
+  #pnl-table table{width:100%;border-collapse:collapse}
+  #pnl-table th,#pnl-table td{border-bottom:1px solid #e5e7eb;padding:6px 4px;font-size:9pt}
+  #pnl-table th{color:#111;text-transform:uppercase;letter-spacing:0.04em;font-size:8pt}
+  #pnl-table tr:last-child td{border-bottom:0}
+}
