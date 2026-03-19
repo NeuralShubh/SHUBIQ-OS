@@ -90,6 +90,7 @@ db.exec(`
     date        TEXT DEFAULT '',
     vendor      TEXT DEFAULT '',
     notes       TEXT DEFAULT '',
+    scope       TEXT DEFAULT 'studio',
     created_at  TEXT DEFAULT (datetime('now'))
   );
 
@@ -139,6 +140,12 @@ if (!existingAuth) {
   const hash = bcrypt.hashSync(rawPass, 12);
   db.prepare('INSERT INTO auth (id, password_hash) VALUES (1, ?)').run(hash);
   console.log(`  [DB] Default admin password set. Change via Settings or ADMIN_PASSWORD env var.`);
+}
+
+// Ensure scope column exists on expenses (migration)
+const expenseCols = db.prepare("PRAGMA table_info(expenses)").all().map(c => c.name);
+if (!expenseCols.includes('scope')) {
+  db.prepare("ALTER TABLE expenses ADD COLUMN scope TEXT DEFAULT 'studio'").run();
 }
 
 // ── Helpers ───────────────────────────────────────────────────────────────────

@@ -202,18 +202,18 @@ router.get('/expenses', (req, res) => {
   res.json(rows.map(r => ({
     id: r.id, description: r.description, category: r.category,
     amount: r.amount, currency: r.currency, date: r.date,
-    vendor: r.vendor, notes: r.notes,
+    vendor: r.vendor, notes: r.notes, scope: r.scope || 'studio',
   })));
 });
 
 router.post('/expenses', (req, res) => {
   try {
-    const { description, category='Misc', amount=0, currency='INR', date='', vendor='', notes='' } = req.body;
+    const { description, category='Misc', amount=0, currency='INR', date='', vendor='', notes='', scope='studio' } = req.body;
     if (!description) return res.status(400).json({ error: 'Description is required' });
     const id = 'e' + Date.now();
-    db.prepare(`INSERT INTO expenses (id,description,category,amount,currency,date,vendor,notes)
-                VALUES (?,?,?,?,?,?,?,?)`).run(id, description, category, amount, currency, date, vendor, notes);
-    res.status(201).json({ id, description, category, amount, currency, date, vendor, notes });
+    db.prepare(`INSERT INTO expenses (id,description,category,amount,currency,date,vendor,notes,scope)
+                VALUES (?,?,?,?,?,?,?,?,?)`).run(id, description, category, amount, currency, date, vendor, notes, scope);
+    res.status(201).json({ id, description, category, amount, currency, date, vendor, notes, scope });
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Failed to create expense' });
@@ -223,9 +223,9 @@ router.post('/expenses', (req, res) => {
 router.put('/expenses/:id', (req, res) => {
   try {
     const { id } = req.params;
-    const { description, category='Misc', amount=0, currency='INR', date='', vendor='', notes='' } = req.body;
-    const result = db.prepare(`UPDATE expenses SET description=?,category=?,amount=?,currency=?,date=?,vendor=?,notes=? WHERE id=?`).run(
-      description, category, amount, currency, date, vendor, notes, id
+    const { description, category='Misc', amount=0, currency='INR', date='', vendor='', notes='', scope='studio' } = req.body;
+    const result = db.prepare(`UPDATE expenses SET description=?,category=?,amount=?,currency=?,date=?,vendor=?,notes=?,scope=? WHERE id=?`).run(
+      description, category, amount, currency, date, vendor, notes, scope, id
     );
     if (!result.changes) return res.status(404).json({ error: 'Expense not found' });
     res.json({ success: true });
