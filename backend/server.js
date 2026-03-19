@@ -2,6 +2,7 @@
 require('dotenv').config();
 
 const express = require('express');
+const fs = require('fs');
 const path = require('path');
 const cors = require('cors');
 const helmet = require('helmet');
@@ -94,7 +95,18 @@ app.get('*', (req, res) => {
   if (req.path.startsWith('/api')) {
     return res.status(404).json({ error: 'Not found' });
   }
-  res.sendFile(path.join(__dirname, '../frontend', 'index.html'));
+  const indexPath = path.join(__dirname, '../frontend', 'index.html');
+  fs.readFile(indexPath, 'utf8', (err, html) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send('Server error');
+    }
+    const stamped = html.replace(/__BUILD__/g, Date.now().toString());
+    res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+    res.setHeader('Pragma', 'no-cache');
+    res.setHeader('Expires', '0');
+    res.send(stamped);
+  });
 });
 
 // ── Error handler ─────────────────────────────────────────────────────────────
