@@ -346,6 +346,7 @@ table.inv-table tbody td{padding:12px 14px;border-bottom:1px solid #f1f5f9;font-
   .chart-wrap canvas{max-height:180px!important}
   #page-pnl .chart-wrap{height:200px!important}
   #page-pnl .chart-wrap canvas{max-height:200px!important}
+  #page-dashboard #dashTrendChart{max-height:200px!important}
 }
 #mobile-menu-btn{display:none}
 #mobile-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:99}
