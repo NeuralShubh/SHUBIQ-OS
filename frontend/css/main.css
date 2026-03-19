@@ -332,9 +332,10 @@ table.inv-table tbody td{padding:12px 14px;border-bottom:1px solid #f1f5f9;font-
 /* ── PRINT STYLES ── */
 @media print{
   #login-page,#toast-container,.modal-overlay,#printBtn,.topbar,.sidebar{display:none!important}
-  body{background:#fff!important;color:#111!important}
-  .invoice-preview{box-shadow:none!important;border:none!important;padding:0!important}
-  a{color:#3684DB!important;text-decoration:underline!important}
+  body{background:#fff!important;color:#111!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .invoice-preview{box-shadow:none!important;border:1px solid #e5e7eb!important;padding:24px!important;background:#fff!important;margin:0 auto!important;max-width:760px!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .invoice-preview a{color:#3684DB!important;text-decoration:none!important}
+  .inv-table thead th,.inv-bank,.inv-status-badge{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
 
 /* ---- PRINT STYLES ---- */
