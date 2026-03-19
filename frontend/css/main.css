@@ -165,8 +165,9 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
 .table-top{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--border);gap:12px;flex-wrap:wrap;background:rgba(6,21,37,0.5)}
 .table-top-left{display:flex;align-items:center;gap:10px}
 .table-title{font-family:var(--font-display);font-size:0.85rem;font-weight:700;color:var(--text2)}
-.tbl-search{display:flex;align-items:center;gap:7px;background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:0 10px;height:32px}
-.tbl-search input{background:none;border:none;outline:none;color:var(--text);font-family:var(--font-body);font-size:0.78rem;width:140px}
+.tbl-search{display:flex;align-items:center;gap:7px;background:var(--surface);border:1px solid var(--border);border-radius:9px;padding:0 10px;height:34px;transition:var(--trans)}
+.tbl-search:focus-within{border-color:var(--border2);background:var(--surface2);box-shadow:0 0 0 2px rgba(54,132,219,0.18)}
+.tbl-search input{background:none;border:none;outline:none;color:var(--text);font-family:var(--font-body);font-size:0.8rem;width:160px;line-height:1}
 .tbl-search input::placeholder{color:var(--text4)}
 .tbl-search svg{width:13px;height:13px;color:var(--text4);flex-shrink:0}
 table{width:100%;border-collapse:collapse;font-size:0.82rem;background:var(--glass)}
