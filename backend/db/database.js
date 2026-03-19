@@ -222,7 +222,7 @@ function exportFullDB() {
     .map(r => ({
       id: r.id, description: r.description, category: r.category,
       amount: r.amount, currency: r.currency, date: r.date,
-      vendor: r.vendor, notes: r.notes,
+      vendor: r.vendor, notes: r.notes, scope: r.scope || 'studio',
     }));
 
   const products = db.prepare('SELECT * FROM products ORDER BY created_at DESC').all()
