@@ -706,24 +706,24 @@ select option{background:var(--bg3)}
 .filter-pill svg{width:12px;height:12px}
 
 /* --- INVOICE PREVIEW --- */
-.invoice-preview{background:#fff;color:#111;border-radius:20px;padding:40px;font-family:var(--font-body);max-width:780px;margin:0 auto;border:1px solid #e8eef6;box-shadow:0 18px 48px rgba(2,10,24,0.12)}
+.invoice-preview{background:#fff;color:#111;border-radius:20px;padding:48px 48px 42px;font-family:var(--font-body);max-width:800px;margin:0 auto;border:1px solid #e8eef6;box-shadow:0 18px 48px rgba(2,10,24,0.12)}
 .invoice-preview h1{font-family:var(--font-display);font-size:2rem;font-weight:800;color:#0f172a;letter-spacing:-0.01em}
-.inv-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:28px;padding-bottom:22px;border-bottom:1px solid #e6eff9}
+.inv-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:30px;padding-bottom:24px;border-bottom:1px solid #e6eff9;gap:24px}
 .inv-meta{text-align:right}
 .inv-meta .inv-num{font-family:var(--font-display);font-size:1.1rem;font-weight:700;color:#2563eb}
 .inv-status-badge{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:999px;font-size:0.72rem;font-weight:600;background:#fff7ed;color:#c2410c;border:1px solid #fed7aa;margin-top:6px}
-.inv-section{margin-bottom:24px}
+.inv-section{margin-bottom:28px}
 .inv-section-title{font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#94a3b8;margin-bottom:8px}
-.inv-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px}
+.inv-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-bottom:26px}
 .inv-label{font-size:0.72rem;color:#94a3b8;margin-bottom:2px}
 .inv-value{font-size:0.88rem;font-weight:600;color:#0f172a}
 table.inv-table{width:100%;border-collapse:collapse}
 table.inv-table thead th{background:#f1f5f9;padding:10px 14px;text-align:left;font-size:0.7rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#64748b;border-bottom:1px solid #e2e8f0}
 table.inv-table tbody td{padding:12px 14px;border-bottom:1px solid #eef2f7;font-size:0.85rem;color:#334155}
-.inv-totals{margin-left:auto;max-width:280px;margin-top:16px}
+.inv-totals{margin-left:auto;max-width:300px;margin-top:18px}
 .inv-total-row{display:flex;justify-content:space-between;padding:6px 0;font-size:0.85rem;color:#64748b;border-bottom:1px solid #f1f5f9}
 .inv-total-row.grand{font-size:1rem;font-weight:800;color:#0f172a;border-bottom:none;padding-top:10px;border-top:2px solid #2563eb;margin-top:4px}
-.inv-footer{margin-top:32px;padding-top:20px;border-top:1px solid #e2e8f0;font-size:0.78rem;color:#94a3b8}
+.inv-footer{margin-top:36px;padding-top:20px;border-top:1px solid #e2e8f0;font-size:0.78rem;color:#94a3b8;text-align:center}
 .inv-bank{background:#f8fafc;border-radius:8px;padding:14px;margin-top:12px;font-size:0.82rem}
 .inv-bank-title{font-weight:600;color:#374151;margin-bottom:6px;font-size:0.8rem}
 
