@@ -305,7 +305,7 @@ function buildDocHTML(d){
     <div class="doc-top-bar"></div>
     <div class="doc-header">
       <div class="doc-brand-block">
-        <div class="doc-logo-sub">${s.bizName||'SHUBIQ Studio'}</div>
+        <div class="doc-logo-sub">SHUBIQ</div>
         <h1 class="doc-biz-name">${s.bizName||'SHUBIQ STUDIO'}</h1>
         <div class="doc-biz-meta">
           ${s.email?`<div>${s.email}</div>`:''}
@@ -409,13 +409,13 @@ function printDoc(){
     .premium-doc { background: #fff; border-radius: 20px; padding: 60px; max-width: 850px; margin: 0 auto; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.1); position: relative; overflow: hidden; min-height: 1000px; display: flex; flex-direction: column; }
     .doc-top-bar { position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: var(--accent); }
     .doc-header { display: flex; justify-content: space-between; margin-bottom: 60px; align-items: flex-start; }
-    .doc-biz-name { font-family: 'Syne', sans-serif; font-size: 2.2rem; font-weight: 800; color: var(--text); margin-bottom: 8px; letter-spacing: -0.02em; }
-    .doc-logo-sub { font-size: 0.75rem; font-weight: 700; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 4px; }
-    .doc-biz-meta { font-size: 0.82rem; color: var(--text-light); line-height: 1.5; }
-    .doc-gst-label { margin-top: 8px; font-weight: 600; color: var(--text); }
+    .doc-biz-name { font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 800; color: var(--text); margin-bottom: 4px; letter-spacing: -0.02em; }
+    .doc-logo-sub { font-size: 0.65rem; font-weight: 700; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 2px; }
+    .doc-biz-meta { font-size: 0.78rem; color: var(--text-light); line-height: 1.4; }
+    .doc-gst-label { margin-top: 6px; font-weight: 700; font-size: 0.72rem; color: var(--text); }
     .doc-meta-block { text-align: right; }
-    .doc-type-label { font-family: 'Syne', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--text-light); letter-spacing: 0.1em; margin-bottom: 4px; }
-    .doc-num-val { font-family: 'Syne', sans-serif; font-size: 2rem; font-weight: 800; color: var(--accent); margin-bottom: 12px; }
+    .doc-type-label { font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--text-light); letter-spacing: 0.1em; margin-bottom: 2px; }
+    .doc-num-val { font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 800; color: var(--accent); margin-bottom: 8px; }
     .doc-date-grid { font-size: 0.8rem; color: var(--text-light); margin-bottom: 16px; }
     .doc-date-grid span { font-weight: 700; color: var(--text); margin-right: 8px; }
     .doc-status-badge { display: inline-block; padding: 6px 14px; border-radius: 30px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; border: 1px solid; }
@@ -438,10 +438,10 @@ function printDoc(){
     .doc-notes-txt { margin-top: 24px; font-size: 0.82rem; color: var(--text-light); line-height: 1.5; }
     .doc-totals-block { width: 280px; }
     .total-row { display: flex; justify-content: space-between; padding: 8px 0; font-size: 0.9rem; color: var(--text-light); }
-    .total-row.grand { margin-top: 16px; padding-top: 20px; border-top: 2px solid var(--text); color: var(--text); font-weight: 700; }
-    .grand-val { font-size: 1.5rem; color: var(--accent); font-weight: 800; font-family: 'Syne', sans-serif; }
-    .doc-final-footer { margin-top: 60px; text-align: center; font-size: 0.75rem; color: var(--text-light); position: relative; padding-bottom: 20px; }
-    .doc-accent-line { width: 40px; height: 3px; background: var(--accent); margin: 15px auto 0; }
+    .total-row.grand { margin-top: 14px; padding-top: 14px; border-top: 2px solid var(--text); color: var(--text); font-weight: 800; }
+    .grand-val { font-size: 1.25rem; color: var(--accent); font-weight: 900; font-family: 'Syne', sans-serif; }
+    .doc-final-footer { margin-top: 40px; text-align: center; font-size: 0.72rem; color: var(--text-light); }
+    .doc-accent-line { width: 30px; height: 3px; background: var(--accent); margin: 10px auto 0; border-radius: 2px; }
     @media print { @page { margin: 10mm; } body { background: #fff; padding: 0; } .premium-doc { box-shadow: none; border-radius: 0; padding: 40px; } }
   </style></head>
   <body>${c.outerHTML}
