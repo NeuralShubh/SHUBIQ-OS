@@ -11,7 +11,7 @@
   --amber:#F59E0B;--amber-glow:rgba(245,158,11,0.2);
   --purple:#8B5CF6;--purple-glow:rgba(139,92,246,0.2);
   --font-display:'Sora',sans-serif;--font-body:'Inter',sans-serif;
-  --logo-url:url('https://cglzadzphyxgiqwwuwle.supabase.co/storage/v1/object/public/Logo/blue.png');
+  --logo-url:url('/assets/logo-blue.png');
   --radius:12px;--radius-lg:18px;--radius-xl:24px;
   --sidebar-w:248px;--topbar-h:56px;
   --trans:0.2s cubic-bezier(0.4,0,0.2,1);
