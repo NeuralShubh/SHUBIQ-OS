@@ -64,6 +64,44 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
   border-color:rgba(54,132,219,0.07);
   background:linear-gradient(180deg,rgba(255,255,255,0.85),rgba(255,255,255,0.65));
 }
+
+/* ——— Overall Expenses polish ——— */
+#page-overall-expenses .sec-head{align-items:flex-end}
+#page-overall-expenses .sec-title{letter-spacing:-0.01em}
+#page-overall-expenses .sec-sub{max-width:560px}
+#page-overall-expenses .stats-grid{gap:16px}
+#page-overall-expenses .stat{border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0)) , var(--surface);box-shadow:0 10px 28px rgba(0,0,0,0.18)}
+#page-overall-expenses .stat-value{font-size:1.35rem}
+#page-overall-expenses .card{border-radius:20px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0)) , var(--surface);box-shadow:0 12px 30px rgba(0,0,0,0.18)}
+#page-overall-expenses .card-header{padding-bottom:10px}
+#page-overall-expenses .chart-wrap{border-radius:16px}
+#page-overall-expenses .table-wrap{border-radius:20px}
+#page-overall-expenses .card-title{letter-spacing:-0.005em}
+#page-overall-expenses .card-sub{font-size:0.78rem}
+
+[data-theme="light"] #page-overall-expenses .card,
+[data-theme="light"] #page-overall-expenses .stat{
+  box-shadow:0 10px 24px rgba(2,15,30,0.08);
+  border-color:rgba(54,132,219,0.07);
+  background:linear-gradient(180deg,rgba(255,255,255,0.85),rgba(255,255,255,0.65));
+}
+[data-theme="light"] #page-overall-expenses .card-header .card-title{color:#0f1f33}
+[data-theme="light"] #page-overall-expenses .card-sub{color:#51637a}
+[data-theme="light"] #page-overall-expenses .stat-label{color:rgba(22,47,74,0.62)}
+
+@media(max-width:900px){
+  #page-overall-expenses .sec-actions{flex-wrap:wrap;gap:8px}
+  #page-overall-expenses .stats-grid{gap:12px}
+  #page-overall-expenses .card-header{gap:8px}
+}
+@media(max-width:600px){
+  #page-overall-expenses .sec-head{align-items:flex-start}
+  #page-overall-expenses .sec-actions{width:100%;justify-content:flex-start}
+  #page-overall-expenses .stats-grid{grid-template-columns:repeat(2,1fr)}
+  #page-overall-expenses .stat{padding:12px}
+  #page-overall-expenses .stat-value{font-size:1.12rem}
+  #page-overall-expenses .card{padding:16px}
+}
 [data-theme="light"] #page-dashboard .card-header .card-title{color:#0f1f33}
 [data-theme="light"] #page-dashboard .card-sub{color:#51637a}
 [data-theme="light"] #page-dashboard .stat-label{color:rgba(22,47,74,0.62)}
