@@ -146,7 +146,7 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
 #page-invoices .stat-value{font-size:1.32rem}
 #page-invoices .card{border-radius:20px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0)) , var(--surface);box-shadow:0 12px 30px rgba(0,0,0,0.18)}
 #page-invoices .card-header{padding-bottom:10px}
-#page-invoices .table-wrap{border-radius:22px;overflow:hidden;border:1px solid var(--border);background:linear-gradient(180deg,rgba(8,22,38,0.85),rgba(8,22,38,0.55))}
+#page-invoices .table-wrap{border-radius:22px;overflow-x:auto;overflow-y:hidden;border:1px solid var(--border);background:linear-gradient(180deg,rgba(8,22,38,0.85),rgba(8,22,38,0.55))}
 #page-invoices .table-title{letter-spacing:-0.005em}
 #page-invoices .tabs{background:var(--surface2);border:1px solid var(--border);padding:6px;border-radius:14px;gap:6px}
 #page-invoices .tab{font-size:0.78rem;padding:8px 12px;border-radius:10px;color:var(--text3);transition:var(--trans)}
@@ -203,6 +203,7 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
   #page-invoices table tbody td:nth-child(4){max-width:120px}
   #page-invoices table{border-spacing:0 6px}
   #page-invoices table tbody tr{box-shadow:none}
+  #page-invoices .table-wrap{overflow-x:auto}
 }
 
 
@@ -235,7 +236,7 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
 #page-projects .stat-value{font-size:1.3rem}
 #page-projects .sec-actions .btn{height:36px;padding:0 14px;border-radius:12px}
 #page-projects .sec-actions .btn svg{width:14px;height:14px}
-#page-projects .table-wrap{border-radius:22px;overflow:hidden;border:1px solid var(--border);background:linear-gradient(180deg,rgba(8,22,38,0.85),rgba(8,22,38,0.55))}
+#page-projects .table-wrap{border-radius:22px;overflow-x:auto;overflow-y:hidden;border:1px solid var(--border);background:linear-gradient(180deg,rgba(8,22,38,0.85),rgba(8,22,38,0.55))}
 #page-projects .table-top{background:rgba(6,20,34,0.65);border-bottom:1px solid var(--border)}
 #page-projects table{border-collapse:separate;border-spacing:0 8px}
 #page-projects table tbody tr{background:var(--surface2);border:1px solid var(--border);box-shadow:none}
@@ -292,7 +293,7 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
 #page-income .stat-value,#page-expenses .stat-value,#page-labs-expenses .stat-value{font-size:1.3rem}
 #page-income .card,#page-expenses .card,#page-labs-expenses .card{border-radius:20px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0)) , var(--surface);box-shadow:0 12px 30px rgba(0,0,0,0.18)}
 #page-income .chart-wrap,#page-expenses .chart-wrap,#page-labs-expenses .chart-wrap{border-radius:16px}
-#page-income .table-wrap,#page-expenses .table-wrap,#page-labs-expenses .table-wrap{border-radius:22px;overflow:hidden;border:1px solid var(--border);background:linear-gradient(180deg,rgba(8,22,38,0.85),rgba(8,22,38,0.55))}
+#page-income .table-wrap,#page-expenses .table-wrap,#page-labs-expenses .table-wrap{border-radius:22px;overflow-x:auto;overflow-y:hidden;border:1px solid var(--border);background:linear-gradient(180deg,rgba(8,22,38,0.85),rgba(8,22,38,0.55))}
 #page-income .table-top,#page-expenses .table-top,#page-labs-expenses .table-top{background:rgba(6,20,34,0.65);border-bottom:1px solid var(--border)}
 #page-income table,#page-expenses table,#page-labs-expenses table{border-collapse:separate;border-spacing:0 8px}
 #page-income table thead th,#page-expenses table thead th,#page-labs-expenses table thead th{background:transparent;font-size:0.64rem}
@@ -385,11 +386,13 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
   #page-clients .sec-head,#page-projects .sec-head,#page-labs-analytics .sec-head,#page-income .sec-head,#page-expenses .sec-head,#page-labs-expenses .sec-head,#page-settings .sec-head{align-items:flex-start}
   #page-clients .grid-3{grid-template-columns:1fr}
   #page-projects table{border-spacing:0 6px}
+  #page-projects .table-wrap{overflow-x:auto}
   #page-projects .stat{padding:12px}
   #page-projects .stat-value{font-size:1.08rem}
   #page-projects .card{padding:16px}
   #page-income table,#page-expenses table,#page-labs-expenses table{border-spacing:0 6px}
   #page-income table tbody tr,#page-expenses table tbody tr,#page-labs-expenses table tbody tr{box-shadow:none}
+  #page-income .table-wrap,#page-expenses .table-wrap,#page-labs-expenses .table-wrap{overflow-x:auto}
   #page-labs-analytics .stat{padding:12px}
   #page-labs-analytics .stat-value{font-size:1.08rem}
   #page-labs-analytics .card{padding:16px}
