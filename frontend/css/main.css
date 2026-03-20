@@ -146,6 +146,7 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
 .stat:hover{border-color:var(--border2);transform:translateY(-1px)}
 .stat::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent 50%,rgba(54,132,219,0.03));pointer-events:none}
 .stat-label{font-family:var(--font-body);font-size:0.68rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:rgba(185,206,229,0.55);margin-bottom:6px}
+[data-theme="light"] .stat-label{color:rgba(22,47,74,0.55)}
 .stat-value{font-family:var(--font-display);font-size:1.45rem;font-weight:800;color:var(--text);line-height:1.15;margin-bottom:6px;font-variant-numeric:tabular-nums;letter-spacing:0.01em}
 .stat-value.green{color:var(--green)}
 .stat-value.red{color:var(--red)}
