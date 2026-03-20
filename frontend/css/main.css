@@ -70,7 +70,7 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
 .brand-text{display:flex;flex-direction:column}
 .brand-name{font-family:var(--font-display);font-weight:800;font-size:0.9rem;color:var(--text);letter-spacing:0.04em;line-height:1.1}
 .brand-sub{font-size:0.6rem;color:var(--text4);letter-spacing:0.1em;text-transform:uppercase;margin-top:1px}
-.snav{flex:1;padding:10px 8px;overflow-y:auto}
+.snav{flex:1;padding:10px 12px;overflow-y:auto}
 .nlabel{font-size:0.62rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text4);padding:12px 10px 5px}
 .nitem{display:flex;align-items:center;gap:9px;padding:8px 12px;border-radius:9px;cursor:pointer;transition:var(--trans);color:var(--text3);font-size:0.84rem;font-weight:400;position:relative;user-select:none;white-space:nowrap;overflow:visible}
 .nitem svg,.user-card svg{overflow:visible;stroke-linecap:round;stroke-linejoin:round;width:16px;height:16px;padding:2px;box-sizing:content-box;display:block}
@@ -81,7 +81,7 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
 .nbadge{margin-left:auto;background:rgba(54,132,219,0.15);color:var(--accent);font-size:0.62rem;font-weight:600;padding:2px 6px;border-radius:20px;border:1px solid rgba(54,132,219,0.25)}
 .nbadge.amber{background:rgba(245,158,11,0.15);color:var(--amber);border-color:rgba(245,158,11,0.25)}
 .nbadge.red{background:rgba(239,68,68,0.15);color:var(--red);border-color:rgba(239,68,68,0.25)}
-.sfooter{padding:10px 8px;border-top:1px solid var(--border);flex-shrink:0}
+.sfooter{padding:10px 12px;border-top:1px solid var(--border);flex-shrink:0}
 .user-card{display:flex;align-items:center;gap:9px;padding:9px 18px 9px 10px;border-radius:9px;background:var(--surface);border:1px solid var(--border);cursor:pointer;transition:var(--trans);overflow:visible}
 .user-card:hover{border-color:var(--border2);background:var(--surface2)}
 .uavatar{width:30px;height:30px;border-radius:7px;background:linear-gradient(135deg,var(--c1),var(--c2));display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;font-size:11px;color:#fff;flex-shrink:0}
