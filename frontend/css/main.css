@@ -85,6 +85,45 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
   border-color:rgba(54,132,219,0.07);
   background:linear-gradient(180deg,rgba(255,255,255,0.85),rgba(255,255,255,0.65));
 }
+
+/* ——— P&L Report polish ——— */
+#page-pnl .sec-head{align-items:flex-end}
+#page-pnl .sec-title{letter-spacing:-0.012em}
+#page-pnl .sec-sub{max-width:560px}
+#page-pnl .stats-grid{gap:16px}
+#page-pnl .stat{border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0)) , var(--surface);box-shadow:0 10px 28px rgba(0,0,0,0.18)}
+#page-pnl .stat-value{font-size:1.35rem}
+#page-pnl .card{border-radius:20px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0)) , var(--surface);box-shadow:0 12px 30px rgba(0,0,0,0.18)}
+#page-pnl .card-header{padding-bottom:10px}
+#page-pnl .chart-wrap{border-radius:16px}
+#page-pnl #pnl-table{border-radius:16px}
+#page-pnl .card-title{letter-spacing:-0.005em}
+#page-pnl .card-sub{font-size:0.78rem}
+
+[data-theme="light"] #page-pnl .card,
+[data-theme="light"] #page-pnl .stat{
+  box-shadow:0 10px 24px rgba(2,15,30,0.08);
+  border-color:rgba(54,132,219,0.07);
+  background:linear-gradient(180deg,rgba(255,255,255,0.85),rgba(255,255,255,0.65));
+}
+[data-theme="light"] #page-pnl .card-header .card-title{color:#0f1f33}
+[data-theme="light"] #page-pnl .card-sub{color:#51637a}
+[data-theme="light"] #page-pnl .stat-label{color:rgba(22,47,74,0.62)}
+
+@media(max-width:900px){
+  #page-pnl .sec-actions{flex-wrap:wrap;gap:8px}
+  #page-pnl .stats-grid{gap:12px}
+  #page-pnl .card-header{gap:8px}
+}
+@media(max-width:600px){
+  #page-pnl .sec-head{align-items:flex-start}
+  #page-pnl .sec-actions{width:100%;justify-content:flex-start}
+  #page-pnl .stats-grid{grid-template-columns:repeat(2,1fr)}
+  #page-pnl .stat{padding:12px}
+  #page-pnl .stat-value{font-size:1.12rem}
+  #page-pnl .card{padding:16px}
+  #page-pnl .chart-legend{flex-wrap:wrap;gap:10px}
+}
 [data-theme="light"] #page-overall-expenses .card-header .card-title{color:#0f1f33}
 [data-theme="light"] #page-overall-expenses .card-sub{color:#51637a}
 [data-theme="light"] #page-overall-expenses .stat-label{color:rgba(22,47,74,0.62)}
