@@ -607,7 +607,8 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
 .col-span-3{grid-column:span 3}
 
 /* ── TABLES ── */
-.table-wrap{overflow-x:auto;border-radius:var(--radius-lg);border:1px solid var(--glass-border);background:var(--glass)}
+.table-wrap{display:block;width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:var(--radius-lg);border:1px solid var(--glass-border);background:var(--glass)}
+.table-wrap table{min-width:1000px}
 .table-top{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--border);gap:12px;flex-wrap:wrap;background:var(--glass);background-clip:padding-box}
 .table-top-left{display:flex;align-items:center;gap:10px}
 .table-title{font-family:var(--font-display);font-size:0.85rem;font-weight:700;color:var(--text2)}
@@ -1285,4 +1286,3 @@ table.inv-table tbody td{padding:12px 14px;border-bottom:1px solid #eef2f7;font-
 
 .pnl-year { height: 30px; border-radius: 8px; border: 1px solid transparent; background: var(--surface); color: var(--text); font-size: 0.78rem; padding: 0 8px; }
 
-@media(max-width:900px){ .table-wrap table{min-width:850px} .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch} }
