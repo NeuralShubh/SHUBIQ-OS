@@ -22,7 +22,7 @@
   --surface:#FFFFFF;--surface2:#F3F7FA;--surface3:#E9F0F7;
   --border:rgba(54,132,219,0.1);--border2:rgba(54,132,219,0.15);--border3:rgba(54,132,219,0.2);
   --text:#031930;--text2:#162f4a;--text3:#4a6278;--text4:#758BA5;
-  --glass:rgba(255,255,255,0.8);--glass-border:rgba(54,132,219,0.15);
+  --glass:rgba(255,255,255,0.8);--glass-border:rgba(54,132,219,0.08);
   --accent-glow:rgba(54,132,219,0.1);
 }
 
@@ -454,6 +454,6 @@ table.inv-table tbody td{padding:12px 14px;border-bottom:1px solid #f1f5f9;font-
 
 
 /* --- P&L Year Selector --- */
-.pnl-year-only{display:flex;align-items:center;gap:8px;background:rgba(10,28,46,0.9);border:0;border-radius:12px;padding:6px 10px;color:var(--text3);font-size:0.78rem}
+.pnl-year-only{display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:6px 10px;color:var(--text3);font-size:0.78rem;box-shadow:none}
 .pnl-year-only span{color:var(--text4)}
-.pnl-year{height:30px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--text);font-size:0.78rem;padding:0 8px}
+.pnl-year{height:30px;border-radius:8px;border:1px solid transparent;background:var(--surface);color:var(--text);font-size:0.78rem;padding:0 8px}
