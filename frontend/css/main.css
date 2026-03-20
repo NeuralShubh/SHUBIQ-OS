@@ -123,6 +123,63 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
   border-color:rgba(54,132,219,0.07);
   background:linear-gradient(180deg,rgba(255,255,255,0.85),rgba(255,255,255,0.65));
 }
+
+/* --- Invoices page polish --- */
+#page-invoices .sec-head{align-items:flex-end}
+#page-invoices .sec-title{letter-spacing:-0.012em}
+#page-invoices .sec-sub{max-width:560px}
+#page-invoices .sec-actions .btn{height:36px;padding:0 14px;border-radius:12px}
+#page-invoices .sec-actions .btn svg{width:14px;height:14px}
+#page-invoices .stats-grid{gap:16px}
+#page-invoices .stat{border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0)) , var(--surface);box-shadow:0 10px 28px rgba(0,0,0,0.18)}
+#page-invoices .stat-label{letter-spacing:0.06em;text-transform:uppercase;font-size:0.62rem}
+#page-invoices .stat-value{font-size:1.32rem}
+#page-invoices .card{border-radius:20px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0)) , var(--surface);box-shadow:0 12px 30px rgba(0,0,0,0.18)}
+#page-invoices .card-header{padding-bottom:10px}
+#page-invoices .table-wrap{border-radius:22px;overflow:hidden;border:1px solid var(--border);background:linear-gradient(180deg,rgba(8,22,38,0.85),rgba(8,22,38,0.55))}
+#page-invoices .table-title{letter-spacing:-0.005em}
+#page-invoices .tabs{background:var(--surface2);border:1px solid var(--border);padding:6px;border-radius:14px;gap:6px}
+#page-invoices .tab{font-size:0.78rem;padding:8px 12px;border-radius:10px;color:var(--text3);transition:var(--trans)}
+#page-invoices .tab.active{background:var(--surface3);color:var(--text);box-shadow:0 6px 16px rgba(0,0,0,0.25)}
+#page-invoices .table-top{background:rgba(6,20,34,0.65);border-bottom:1px solid var(--border);padding:14px 16px}
+#page-invoices .tbl-search{height:34px;border-radius:11px;background:var(--surface2);border:1px solid var(--border)}
+#page-invoices .tbl-search:focus-within{border-color:var(--border2);background:var(--surface3)}
+#page-invoices table thead th{font-size:0.64rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--text4)}
+#page-invoices table tbody td{font-size:0.86rem}
+#page-invoices table tbody tr:hover{background:rgba(54,132,219,0.06)}
+#page-invoices .actions-cell .action-row{gap:6px;flex-wrap:wrap}
+#page-invoices .actions-cell .btn{height:30px;padding:0 10px;border-radius:9px}
+#page-invoices .actions-cell .btn-icon{width:30px;height:30px}
+
+[data-theme="light"] #page-invoices .card,
+[data-theme="light"] #page-invoices .stat{box-shadow:0 10px 24px rgba(2,15,30,0.08);border-color:rgba(54,132,219,0.07);background:linear-gradient(180deg,rgba(255,255,255,0.85),rgba(255,255,255,0.65))}
+[data-theme="light"] #page-invoices .stat-label{color:rgba(22,47,74,0.62)}
+[data-theme="light"] #page-invoices .card-sub{color:#51637a}
+[data-theme="light"] #page-invoices .tabs{background:#F0F5FA;border-color:rgba(54,132,219,0.12)}
+[data-theme="light"] #page-invoices .tab.active{background:#ffffff;box-shadow:0 10px 20px rgba(3,20,44,0.08)}
+[data-theme="light"] #page-invoices .table-wrap{background:linear-gradient(180deg,rgba(255,255,255,0.98),rgba(245,249,253,0.92));border-color:rgba(54,132,219,0.12)}
+[data-theme="light"] #page-invoices .table-top{background:rgba(245,249,253,0.9)}
+[data-theme="light"] #page-invoices table tbody tr:hover{background:rgba(54,132,219,0.06)}
+
+@media(max-width:900px){
+  #page-invoices .sec-actions{flex-wrap:wrap;gap:8px}
+  #page-invoices .stats-grid{gap:12px}
+}
+@media(max-width:600px){
+  #page-invoices .sec-head{align-items:flex-start}
+  #page-invoices .sec-actions{width:100%;justify-content:flex-start}
+  #page-invoices .stats-grid{grid-template-columns:repeat(2,1fr)}
+  #page-invoices .stat{padding:12px}
+  #page-invoices .stat-value{font-size:1.08rem}
+  #page-invoices .card{padding:16px}
+  #page-invoices .tabs{flex-wrap:wrap}
+  #page-invoices .tab{flex:1 1 auto;text-align:center}
+  #page-invoices .table-top{flex-direction:column;align-items:flex-start;gap:10px}
+  #page-invoices .tbl-search{width:100%}
+  #page-invoices table thead th:nth-child(4),
+  #page-invoices table tbody td:nth-child(4){max-width:120px}
+}
+
 [data-theme="light"] #page-products .product-desc{color:#51637a}
 [data-theme="light"] #page-products .metric{background:rgba(255,255,255,0.9)}
 
