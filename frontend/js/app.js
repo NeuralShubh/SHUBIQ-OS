@@ -429,7 +429,7 @@ function printDoc(){
     .doc-table tbody td { padding: 16px; border-bottom: 1px solid var(--border); font-size: 0.9rem; color: var(--text); }
     .td-desc { font-weight: 600; }
     .td-amt-bold { font-weight: 700; text-align: right; }
-    .doc-footer-flex { display: flex; justify-content: space-between; gap: 40px; margin-top: 20px; padding-top: 20px; border-top: 1px solid #f1f5f9; }
+    .doc-footer-flex { display: flex; justify-content: space-between; gap: 40px; margin-top: 20px; padding-top: 20px; }
     .doc-notes-block { flex: 1; }
     .payment-details { background: #f8fafc; border-radius: 12px; padding: 18px; border: 1px solid #e2e8f0; }
     .pay-title { font-size: 0.68rem; font-weight: 700; color: var(--accent); letter-spacing: 0.08em; margin-bottom: 12px; }
