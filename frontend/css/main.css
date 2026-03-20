@@ -177,7 +177,7 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
 [data-theme="light"] #page-invoices .tab.active{background:#ffffff;box-shadow:0 10px 20px rgba(3,20,44,0.08)}
 [data-theme="light"] #page-invoices .table-wrap{background:linear-gradient(180deg,rgba(255,255,255,0.98),rgba(245,249,253,0.92));border-color:rgba(54,132,219,0.12)}
 [data-theme="light"] #page-invoices .table-top{background:rgba(245,249,253,0.9)}
-[data-theme="light"] #page-invoices table tbody tr:hover{background:rgba(54,132,219,0.06)}
+[data-theme="light"] #page-invoices table tbody tr:hover{background:rgba(54,132,219,0.04)}
 [data-theme="light"] #page-invoices table tbody tr{
   background:#ffffff;
   border-color:rgba(54,132,219,0.12);
@@ -202,7 +202,7 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
   #page-invoices table thead th:nth-child(4),
   #page-invoices table tbody td:nth-child(4){max-width:120px}
   #page-invoices table{border-spacing:0 6px}
-  #page-invoices table tbody tr{box-shadow:0 6px 14px rgba(0,0,0,0.16)}
+  #page-invoices table tbody tr{box-shadow:none}
 }
 
 
@@ -239,6 +239,7 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
 #page-projects .table-top{background:rgba(6,20,34,0.65);border-bottom:1px solid var(--border)}
 #page-projects table{border-collapse:separate;border-spacing:0 8px}
 #page-projects table tbody tr{background:var(--surface2);border:1px solid var(--border);box-shadow:none}
+#page-projects table tbody tr:hover{background:var(--surface3)}
 #page-projects table tbody td{padding:12px 14px;border-bottom:none}
 #page-projects table tbody td:first-child{border-top-left-radius:12px;border-bottom-left-radius:12px}
 #page-projects table tbody td:last-child{border-top-right-radius:12px;border-bottom-right-radius:12px}
@@ -253,7 +254,8 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
   border-color:rgba(54,132,219,0.07);
   background:linear-gradient(180deg,rgba(255,255,255,0.85),rgba(255,255,255,0.65));
 }
-[data-theme="light"] #page-projects table tbody tr{background:#fff;border-color:rgba(54,132,219,0.12);box-shadow:0 8px 18px rgba(3,20,44,0.08)}
+[data-theme="light"] #page-projects table tbody tr{background:#fff;border-color:rgba(54,132,219,0.12);box-shadow:none}
+[data-theme="light"] #page-projects table tbody tr:hover{background:rgba(54,132,219,0.04)}
 [data-theme="light"] #page-projects .progress{background:rgba(54,132,219,0.08)}
 [data-theme="light"] #page-projects .filter-pill{background:#fff;border-color:rgba(54,132,219,0.15)}
 [data-theme="light"] #page-projects .table-wrap{background:linear-gradient(180deg,rgba(255,255,255,0.98),rgba(245,249,253,0.92));border-color:rgba(54,132,219,0.12)}
@@ -297,6 +299,7 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
 #page-income table tbody tr,#page-expenses table tbody tr,#page-labs-expenses table tbody tr{
   background:var(--surface2);border:1px solid var(--border);box-shadow:none
 }
+#page-income table tbody tr:hover,#page-expenses table tbody tr:hover,#page-labs-expenses table tbody tr:hover{background:var(--surface3)}
 #page-income table tbody td,#page-expenses table tbody td,#page-labs-expenses table tbody td{padding:12px 14px;border-bottom:none}
 #page-income table tbody td:first-child,#page-expenses table tbody td:first-child,#page-labs-expenses table tbody td:first-child{border-top-left-radius:12px;border-bottom-left-radius:12px}
 #page-income table tbody td:last-child,#page-expenses table tbody td:last-child,#page-labs-expenses table tbody td:last-child{border-top-right-radius:12px;border-bottom-right-radius:12px}
@@ -320,7 +323,10 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
 [data-theme="light"] #page-labs-expenses .table-top{background:rgba(245,249,253,0.9)}
 [data-theme="light"] #page-income table tbody tr,
 [data-theme="light"] #page-expenses table tbody tr,
-[data-theme="light"] #page-labs-expenses table tbody tr{background:#fff;border-color:rgba(54,132,219,0.12);box-shadow:0 8px 18px rgba(3,20,44,0.08)}
+[data-theme="light"] #page-labs-expenses table tbody tr{background:#fff;border-color:rgba(54,132,219,0.12);box-shadow:none}
+[data-theme="light"] #page-income table tbody tr:hover,
+[data-theme="light"] #page-expenses table tbody tr:hover,
+[data-theme="light"] #page-labs-expenses table tbody tr:hover{background:rgba(54,132,219,0.04)}
 
 /* --- Settings page polish --- */
 #page-settings .sec-head{align-items:flex-end}
@@ -383,7 +389,7 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
   #page-projects .stat-value{font-size:1.08rem}
   #page-projects .card{padding:16px}
   #page-income table,#page-expenses table,#page-labs-expenses table{border-spacing:0 6px}
-  #page-income table tbody tr,#page-expenses table tbody tr,#page-labs-expenses table tbody tr{box-shadow:0 6px 14px rgba(0,0,0,0.16)}
+  #page-income table tbody tr,#page-expenses table tbody tr,#page-labs-expenses table tbody tr{box-shadow:none}
   #page-labs-analytics .stat{padding:12px}
   #page-labs-analytics .stat-value{font-size:1.08rem}
   #page-labs-analytics .card{padding:16px}
