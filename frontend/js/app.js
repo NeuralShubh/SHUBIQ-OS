@@ -6,6 +6,28 @@ function setToken(t){ t?localStorage.setItem(TOKEN_KEY,t):localStorage.removeIte
 function showLogin(){ document.getElementById('login-page').style.display='block'; document.getElementById('app').style.display='none'; }
 function showApp(){ document.getElementById('login-page').style.display='none'; document.getElementById('app').style.display='grid'; }
 
+/* ── THEME MANAGEMENT ── */
+function initTheme(){
+  const theme = localStorage.getItem('shubiq_theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', theme);
+  updateThemeIcons(theme);
+}
+function toggleTheme(){
+  const cur = document.documentElement.getAttribute('data-theme') || 'dark';
+  const next = cur === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  localStorage.setItem('shubiq_theme', next);
+  updateThemeIcons(next);
+}
+function updateThemeIcons(theme){
+  const sun = document.getElementById('theme-sun');
+  const moon = document.getElementById('theme-moon');
+  if(!sun || !moon) return;
+  if(theme === 'light'){ sun.style.display='none'; moon.style.display='block'; }
+  else { sun.style.display='block'; moon.style.display='none'; }
+}
+initTheme();
+
 async function apiFetch(path,options={}){
   const headers=Object.assign({'Content-Type':'application/json'},options.headers||{});
   const token=getToken(); if(token) headers.Authorization='Bearer '+token;
