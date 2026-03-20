@@ -72,8 +72,8 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
 .brand-sub{font-size:0.6rem;color:var(--text4);letter-spacing:0.1em;text-transform:uppercase;margin-top:1px}
 .snav{flex:1;padding:10px 8px;overflow-y:auto}
 .nlabel{font-size:0.62rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text4);padding:12px 10px 5px}
-.nitem{display:flex;align-items:center;gap:9px;padding:8px 12px;border-radius:9px;cursor:pointer;transition:var(--trans);color:var(--text3);font-size:0.84rem;font-weight:400;position:relative;user-select:none;white-space:nowrap}
-.nitem svg,.user-card svg{overflow:visible;stroke-linecap:round;stroke-linejoin:round;width:20px;height:20px;padding:2px;box-sizing:content-box}
+.nitem{display:flex;align-items:center;gap:9px;padding:8px 12px;border-radius:9px;cursor:pointer;transition:var(--trans);color:var(--text3);font-size:0.84rem;font-weight:400;position:relative;user-select:none;white-space:nowrap;overflow:visible}
+.nitem svg,.user-card svg{overflow:visible;stroke-linecap:round;stroke-linejoin:round;width:18px;height:18px;padding:0;box-sizing:content-box;display:block}
 .nitem:hover{background:var(--surface);color:var(--text2)}
 .nitem.active{background:rgba(54,132,219,0.12);color:var(--accent);font-weight:500}
 .nitem.active::before{content:'';position:absolute;left:0;top:7px;bottom:7px;width:2.5px;background:var(--accent);border-radius:0 3px 3px 0}
