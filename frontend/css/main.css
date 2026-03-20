@@ -291,6 +291,7 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
 #page-income .card,#page-expenses .card,#page-labs-expenses .card{border-radius:20px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0)) , var(--surface);box-shadow:0 12px 30px rgba(0,0,0,0.18)}
 #page-income .chart-wrap,#page-expenses .chart-wrap,#page-labs-expenses .chart-wrap{border-radius:16px}
 #page-income .table-wrap,#page-expenses .table-wrap,#page-labs-expenses .table-wrap{border-radius:22px;overflow:hidden;border:1px solid var(--border);background:linear-gradient(180deg,rgba(8,22,38,0.85),rgba(8,22,38,0.55))}
+#page-income .table-top,#page-expenses .table-top,#page-labs-expenses .table-top{background:rgba(6,20,34,0.65);border-bottom:1px solid var(--border)}
 #page-income table,#page-expenses table,#page-labs-expenses table{border-collapse:separate;border-spacing:0 8px}
 #page-income table thead th,#page-expenses table thead th,#page-labs-expenses table thead th{background:transparent;font-size:0.64rem}
 #page-income table tbody tr,#page-expenses table tbody tr,#page-labs-expenses table tbody tr{
@@ -314,6 +315,9 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
 [data-theme="light"] #page-income .table-wrap,
 [data-theme="light"] #page-expenses .table-wrap,
 [data-theme="light"] #page-labs-expenses .table-wrap{background:linear-gradient(180deg,rgba(255,255,255,0.98),rgba(245,249,253,0.92));border-color:rgba(54,132,219,0.12)}
+[data-theme="light"] #page-income .table-top,
+[data-theme="light"] #page-expenses .table-top,
+[data-theme="light"] #page-labs-expenses .table-top{background:rgba(245,249,253,0.9)}
 [data-theme="light"] #page-income table tbody tr,
 [data-theme="light"] #page-expenses table tbody tr,
 [data-theme="light"] #page-labs-expenses table tbody tr{background:#fff;border-color:rgba(54,132,219,0.12);box-shadow:0 8px 18px rgba(3,20,44,0.08)}
