@@ -72,11 +72,11 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
 .snav{flex:1;padding:10px 12px;overflow-y:auto}
 .nlabel{font-size:0.62rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--text4);padding:12px 10px 5px}
 .nitem{display:flex;align-items:center;gap:9px;padding:8px 12px;border-radius:9px;cursor:pointer;transition:var(--trans);color:var(--text3);font-size:0.84rem;font-weight:400;position:relative;user-select:none;white-space:nowrap;overflow:visible}
-.nitem svg,.user-card svg{overflow:visible;stroke-linecap:round;stroke-linejoin:round;width:16px;height:16px;padding:2px;box-sizing:content-box;display:block}
+.nitem svg,.user-card svg{overflow:visible;stroke-linecap:round;stroke-linejoin:round;width:20px;height:20px;display:block;flex-shrink:0}
 .nitem:hover{background:var(--surface);color:var(--text2)}
 .nitem.active{background:rgba(54,132,219,0.12);color:var(--accent);font-weight:500}
 .nitem.active::before{content:'';position:absolute;left:0;top:7px;bottom:7px;width:2.5px;background:var(--accent);border-radius:0 3px 3px 0}
-.nitem svg{width:16px;height:16px;flex-shrink:0}
+.nitem svg{flex-shrink:0}
 .nbadge{margin-left:auto;background:rgba(54,132,219,0.15);color:var(--accent);font-size:0.62rem;font-weight:600;padding:2px 6px;border-radius:20px;border:1px solid rgba(54,132,219,0.25)}
 .nbadge.amber{background:rgba(245,158,11,0.15);color:var(--amber);border-color:rgba(245,158,11,0.25)}
 .nbadge.red{background:rgba(239,68,68,0.15);color:var(--red);border-color:rgba(239,68,68,0.25)}
