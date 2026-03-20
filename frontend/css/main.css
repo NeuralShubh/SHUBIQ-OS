@@ -236,6 +236,7 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
 #page-projects .sec-actions .btn{height:36px;padding:0 14px;border-radius:12px}
 #page-projects .sec-actions .btn svg{width:14px;height:14px}
 #page-projects .table-wrap{border-radius:22px;overflow:hidden;border:1px solid var(--border);background:linear-gradient(180deg,rgba(8,22,38,0.85),rgba(8,22,38,0.55))}
+#page-projects .table-top{background:rgba(6,20,34,0.65);border-bottom:1px solid var(--border)}
 #page-projects table{border-collapse:separate;border-spacing:0 8px}
 #page-projects table tbody tr{background:var(--surface2);border:1px solid var(--border);box-shadow:0 8px 20px rgba(0,0,0,0.18)}
 #page-projects table tbody td{padding:12px 14px;border-bottom:none}
@@ -255,6 +256,8 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
 [data-theme="light"] #page-projects table tbody tr{background:#fff;border-color:rgba(54,132,219,0.12);box-shadow:0 8px 18px rgba(3,20,44,0.08)}
 [data-theme="light"] #page-projects .progress{background:rgba(54,132,219,0.08)}
 [data-theme="light"] #page-projects .filter-pill{background:#fff;border-color:rgba(54,132,219,0.15)}
+[data-theme="light"] #page-projects .table-wrap{background:linear-gradient(180deg,rgba(255,255,255,0.98),rgba(245,249,253,0.92));border-color:rgba(54,132,219,0.12)}
+[data-theme="light"] #page-projects .table-top{background:rgba(245,249,253,0.9)}
 
 /* --- Analytics page polish --- */
 #page-labs-analytics .sec-head{align-items:flex-end}
