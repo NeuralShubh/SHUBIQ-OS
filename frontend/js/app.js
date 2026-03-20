@@ -331,7 +331,7 @@ function buildDocHTML(d){
         <div class="info-value-name">${cl?cl.name:'Client not specified'}</div>
         <div class="info-value-sub">
           ${cl&&cl.contact?`<div>${cl.contact}</div>`:''}
-          ${cl&&cl.email?`<div style="color:var(--accent)">${cl.email}</div>`:''}
+          ${cl&&cl.email?`<div>${cl.email}</div>`:''}
           ${cl&&cl.phone?`<div>${cl.phone}</div>`:''}
           ${cl&&cl.address?`<div style="margin-top:4px">${cl.address}</div>`:''}
         </div>
