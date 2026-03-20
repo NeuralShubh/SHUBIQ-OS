@@ -406,9 +406,9 @@ function printDoc(){
     :root { --accent: #3684DB; --text: #1a1a2e; --text-light: #64748b; --border: #e2e8f0; }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'DM Sans', sans-serif; background: #f1f5f9; padding: 40px; color: var(--text); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    .premium-doc { background: #fff; border-radius: 20px; padding: 60px; max-width: 850px; margin: 0 auto; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.1); position: relative; overflow: hidden; min-height: 1000px; display: flex; flex-direction: column; }
+    .premium-doc { background: #fff; border-radius: 20px; padding: 50px; max-width: 820px; margin: 0 auto; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.1); position: relative; overflow: hidden; min-height: 500px; display: flex; flex-direction: column; }
     .doc-top-bar { position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: var(--accent); }
-    .doc-header { display: flex; justify-content: space-between; margin-bottom: 60px; align-items: flex-start; }
+    .doc-header { display: flex; justify-content: space-between; margin-bottom: 40px; align-items: flex-start; }
     .doc-biz-name { font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 800; color: var(--text); margin-bottom: 4px; letter-spacing: -0.02em; }
     .doc-logo-sub { font-size: 0.65rem; font-weight: 700; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 2px; }
     .doc-biz-meta { font-size: 0.78rem; color: var(--text-light); line-height: 1.4; }
@@ -419,28 +419,28 @@ function printDoc(){
     .doc-date-grid { font-size: 0.8rem; color: var(--text-light); margin-bottom: 16px; }
     .doc-date-grid span { font-weight: 700; color: var(--text); margin-right: 8px; }
     .doc-status-badge { display: inline-block; padding: 6px 14px; border-radius: 30px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; border: 1px solid; }
-    .doc-info-section { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 50px; padding-top: 40px; border-top: 1px solid var(--border); }
+    .doc-info-section { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 40px; padding-top: 40px; border-top: 1px solid var(--border); }
     .info-label { font-size: 0.68rem; font-weight: 700; color: var(--accent); letter-spacing: 0.1em; margin-bottom: 12px; }
     .info-value-name { font-size: 1.1rem; font-weight: 700; color: var(--text); margin-bottom: 4px; }
     .info-value-main { font-size: 1.1rem; font-weight: 600; color: var(--text); }
     .info-value-sub { font-size: 0.85rem; color: var(--text-light); line-height: 1.5; }
-    .doc-table { width: 100%; border-collapse: collapse; margin-bottom: 40px; }
+    .doc-table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
     .doc-table thead th { padding: 16px; background: #f8fafc; border-bottom: 2px solid var(--accent); font-size: 0.72rem; font-weight: 700; color: var(--text-light); letter-spacing: 0.05em; }
-    .doc-table tbody td { padding: 20px 16px; border-bottom: 1px solid var(--border); font-size: 0.9rem; color: var(--text); }
+    .doc-table tbody td { padding: 16px; border-bottom: 1px solid var(--border); font-size: 0.9rem; color: var(--text); }
     .td-desc { font-weight: 600; }
     .td-amt-bold { font-weight: 700; text-align: right; }
-    .doc-footer-flex { display: flex; justify-content: space-between; gap: 40px; margin-top: auto; padding-top: 40px; }
+    .doc-footer-flex { display: flex; justify-content: space-between; gap: 40px; margin-top: 20px; padding-top: 20px; border-top: 1px solid #f1f5f9; }
     .doc-notes-block { flex: 1; }
-    .payment-details { background: #f8fafc; border-radius: 12px; padding: 24px; }
-    .pay-title { font-size: 0.68rem; font-weight: 700; color: var(--accent); letter-spacing: 0.08em; margin-bottom: 16px; }
-    .pay-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-size: 0.8rem; color: var(--text); }
-    .pay-label { color: var(--text-light); font-weight: 500; }
+    .payment-details { background: #f8fafc; border-radius: 12px; padding: 18px; border: 1px solid #e2e8f0; }
+    .pay-title { font-size: 0.68rem; font-weight: 700; color: var(--accent); letter-spacing: 0.08em; margin-bottom: 12px; }
+    .pay-grid { display: grid; grid-template-columns: auto 1fr; gap: 6px 14px; font-size: 0.78rem; color: var(--text); }
+    .pay-label { color: var(--text-light); font-weight: 500; font-size: 0.72rem; text-transform: uppercase; }
     .doc-notes-txt { margin-top: 24px; font-size: 0.82rem; color: var(--text-light); line-height: 1.5; }
     .doc-totals-block { width: 280px; }
     .total-row { display: flex; justify-content: space-between; padding: 8px 0; font-size: 0.9rem; color: var(--text-light); }
     .total-row.grand { margin-top: 14px; padding-top: 14px; border-top: 2px solid var(--text); color: var(--text); font-weight: 800; }
-    .grand-val { font-size: 1.25rem; color: var(--accent); font-weight: 900; font-family: 'Syne', sans-serif; }
-    .doc-final-footer { margin-top: 40px; text-align: center; font-size: 0.72rem; color: var(--text-light); }
+    .grand-val { font-size: 1.25rem; color: var(--accent); font-weight: 700; font-family: 'Syne', sans-serif; }
+    .doc-final-footer { margin-top: 40px; text-align: center; font-size: 0.72rem; color: #94a3b8; }
     .doc-accent-line { width: 30px; height: 3px; background: var(--accent); margin: 10px auto 0; border-radius: 2px; }
     @media print { @page { margin: 10mm; } body { background: #fff; padding: 0; } .premium-doc { box-shadow: none; border-radius: 0; padding: 40px; } }
   </style></head>
