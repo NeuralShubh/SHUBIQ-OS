@@ -144,10 +144,18 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
 #page-invoices .table-top{background:rgba(6,20,34,0.65);border-bottom:1px solid var(--border);padding:14px 16px}
 #page-invoices .tbl-search{height:34px;border-radius:11px;background:var(--surface2);border:1px solid var(--border)}
 #page-invoices .tbl-search:focus-within{border-color:var(--border2);background:var(--surface3)}
-#page-invoices table thead th{font-size:0.64rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--text4)}
-#page-invoices table tbody td{font-size:0.86rem}
-#page-invoices table tbody tr:hover{background:rgba(54,132,219,0.06)}
-#page-invoices .actions-cell .action-row{gap:6px;flex-wrap:wrap}
+#page-invoices table{border-collapse:separate;border-spacing:0 8px}
+#page-invoices table thead th{font-size:0.64rem;text-transform:uppercase;letter-spacing:0.06em;color:var(--text4);background:transparent}
+#page-invoices table tbody tr{
+  background:var(--surface2);
+  border:1px solid var(--border);
+  box-shadow:0 8px 20px rgba(0,0,0,0.18);
+}
+#page-invoices table tbody tr:hover{background:var(--surface3)}
+#page-invoices table tbody td{font-size:0.86rem;padding:12px 14px;border-bottom:none}
+#page-invoices table tbody td:first-child{border-top-left-radius:12px;border-bottom-left-radius:12px}
+#page-invoices table tbody td:last-child{border-top-right-radius:12px;border-bottom-right-radius:12px}
+#page-invoices .actions-cell .action-row{gap:6px;flex-wrap:wrap;justify-content:flex-end}
 #page-invoices .actions-cell .btn{height:30px;padding:0 10px;border-radius:9px}
 #page-invoices .actions-cell .btn-icon{width:30px;height:30px}
 
@@ -160,6 +168,11 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
 [data-theme="light"] #page-invoices .table-wrap{background:linear-gradient(180deg,rgba(255,255,255,0.98),rgba(245,249,253,0.92));border-color:rgba(54,132,219,0.12)}
 [data-theme="light"] #page-invoices .table-top{background:rgba(245,249,253,0.9)}
 [data-theme="light"] #page-invoices table tbody tr:hover{background:rgba(54,132,219,0.06)}
+[data-theme="light"] #page-invoices table tbody tr{
+  background:#ffffff;
+  border-color:rgba(54,132,219,0.12);
+  box-shadow:0 8px 18px rgba(3,20,44,0.08);
+}
 
 @media(max-width:900px){
   #page-invoices .sec-actions{flex-wrap:wrap;gap:8px}
@@ -178,6 +191,8 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
   #page-invoices .tbl-search{width:100%}
   #page-invoices table thead th:nth-child(4),
   #page-invoices table tbody td:nth-child(4){max-width:120px}
+  #page-invoices table{border-spacing:0 6px}
+  #page-invoices table tbody tr{box-shadow:0 6px 14px rgba(0,0,0,0.16)}
 }
 
 [data-theme="light"] #page-products .product-desc{color:#51637a}
