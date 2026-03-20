@@ -660,7 +660,7 @@ function updatePrintMeta(){
   const biz=document.getElementById('print-biz-name');
   const period=document.getElementById('print-period-label');
   const date=document.getElementById('print-date');
-  if(biz) biz.textContent = (DB.settings && DB.settings.bizName) ? DB.settings.bizName : 'SHUBIQ Business OS';
+  if(biz) biz.textContent = (DB.settings && DB.settings.bizName) ? DB.settings.bizName : 'SHUBIQ OS';
   if(period){
     const sel=document.getElementById('pnl-period');
     period.textContent = sel && sel.selectedIndex>=0 ? sel.options[sel.selectedIndex].textContent : 'FY 2025-26';

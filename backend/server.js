@@ -122,7 +122,7 @@ app.use((err, req, res, _next) => {
 
 // ── Start ─────────────────────────────────────────────────────────────────────
 app.listen(PORT, () => {
-  console.log(`\n  SHUBIQ Business OS`);
+  console.log(`\n  SHUBIQ OS`);
   console.log(`  Running on http://localhost:${PORT}`);
   console.log(`  Environment: ${process.env.NODE_ENV || 'development'}\n`);
 });
