@@ -708,7 +708,7 @@ select option{background:var(--bg3)}
 /* --- INVOICE PREVIEW --- */
 .invoice-preview{background:#fff;color:#111;border-radius:20px;padding:48px 48px 42px;font-family:var(--font-body);max-width:800px;margin:0 auto;border:1px solid #e8eef6;box-shadow:0 18px 48px rgba(2,10,24,0.12)}
 .invoice-preview h1{font-family:var(--font-display);font-size:1.7rem;font-weight:800;color:#0f172a;letter-spacing:-0.01em}
-.inv-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:34px;padding-bottom:26px;border-bottom:1px solid #e6eff9;gap:32px}
+.inv-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:22px;padding-bottom:18px;border-bottom:1px solid #e6eff9;gap:24px}
 .inv-header .inv-left{max-width:60%}
 .inv-header .inv-right{max-width:40%}
 .inv-header .inv-right .inv-meta{background:#f8fafc;border:1px solid #e2e8f0;border-radius:14px;padding:14px 16px;min-width:220px}
@@ -717,9 +717,9 @@ select option{background:var(--bg3)}
 .inv-meta{text-align:right}
 .inv-meta .inv-num{font-family:var(--font-display);font-size:0.98rem;font-weight:700;color:#2563eb}
 .inv-status-badge{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:999px;font-size:0.72rem;font-weight:600;background:#fff7ed;color:#c2410c;border:1px solid #fed7aa;margin-top:6px}
-.inv-section{margin-bottom:28px}
+.inv-section{margin-bottom:18px}
 .inv-section-title{font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:#94a3b8;margin-bottom:8px}
-.inv-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:30px}
+.inv-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:18px}
 .inv-info-grid > div{padding-top:4px}
 .inv-label{font-size:0.72rem;color:#94a3b8;margin-bottom:2px}
 .inv-value{font-size:0.88rem;font-weight:600;color:#0f172a}
