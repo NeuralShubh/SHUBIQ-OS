@@ -1284,3 +1284,5 @@ table.inv-table tbody td{padding:12px 14px;border-bottom:1px solid #eef2f7;font-
 .doc-accent-line { width: 40px; height: 3px; background: #3684DB; margin: 12px auto 0; border-radius: 2px; }
 
 .pnl-year { height: 30px; border-radius: 8px; border: 1px solid transparent; background: var(--surface); color: var(--text); font-size: 0.78rem; padding: 0 8px; }
+
+@media(max-width:900px){ .table-wrap table{min-width:850px} .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch} }
