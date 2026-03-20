@@ -231,13 +231,20 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
 #page-projects .sec-sub{max-width:560px}
 #page-projects .stats-grid{gap:16px}
 #page-projects .stat{border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0)) , var(--surface);box-shadow:0 10px 28px rgba(0,0,0,0.18)}
-#page-projects .stat-value{font-size:1.32rem}
+#page-projects .stat-label{letter-spacing:0.06em;text-transform:uppercase;font-size:0.62rem}
+#page-projects .stat-value{font-size:1.3rem}
+#page-projects .sec-actions .btn{height:36px;padding:0 14px;border-radius:12px}
+#page-projects .sec-actions .btn svg{width:14px;height:14px}
 #page-projects .table-wrap{border-radius:22px;overflow:hidden;border:1px solid var(--border);background:linear-gradient(180deg,rgba(8,22,38,0.85),rgba(8,22,38,0.55))}
 #page-projects table{border-collapse:separate;border-spacing:0 8px}
 #page-projects table tbody tr{background:var(--surface2);border:1px solid var(--border);box-shadow:0 8px 20px rgba(0,0,0,0.18)}
 #page-projects table tbody td{padding:12px 14px;border-bottom:none}
 #page-projects table tbody td:first-child{border-top-left-radius:12px;border-bottom-left-radius:12px}
 #page-projects table tbody td:last-child{border-top-right-radius:12px;border-bottom-right-radius:12px}
+#page-projects .tbl-search{height:34px;border-radius:11px}
+#page-projects .filter-pill{border-radius:999px;padding:6px 12px}
+#page-projects .progress{height:6px}
+#page-projects .progress-fill{box-shadow:0 6px 14px rgba(34,197,94,0.25)}
 
 [data-theme="light"] #page-projects .stat,
 [data-theme="light"] #page-projects .card{
@@ -246,6 +253,8 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
   background:linear-gradient(180deg,rgba(255,255,255,0.85),rgba(255,255,255,0.65));
 }
 [data-theme="light"] #page-projects table tbody tr{background:#fff;border-color:rgba(54,132,219,0.12);box-shadow:0 8px 18px rgba(3,20,44,0.08)}
+[data-theme="light"] #page-projects .progress{background:rgba(54,132,219,0.08)}
+[data-theme="light"] #page-projects .filter-pill{background:#fff;border-color:rgba(54,132,219,0.15)}
 
 /* --- Analytics page polish --- */
 #page-labs-analytics .sec-head{align-items:flex-end}
@@ -363,6 +372,9 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
   #page-clients .sec-head,#page-projects .sec-head,#page-labs-analytics .sec-head,#page-income .sec-head,#page-expenses .sec-head,#page-labs-expenses .sec-head,#page-settings .sec-head{align-items:flex-start}
   #page-clients .grid-3{grid-template-columns:1fr}
   #page-projects table{border-spacing:0 6px}
+  #page-projects .stat{padding:12px}
+  #page-projects .stat-value{font-size:1.08rem}
+  #page-projects .card{padding:16px}
   #page-income table,#page-expenses table,#page-labs-expenses table{border-spacing:0 6px}
   #page-income table tbody tr,#page-expenses table tbody tr,#page-labs-expenses table tbody tr{box-shadow:0 6px 14px rgba(0,0,0,0.16)}
   #page-labs-analytics .stat{padding:12px}
